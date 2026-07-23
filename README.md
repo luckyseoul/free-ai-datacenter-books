@@ -1,68 +1,47 @@
 # Free High-Quality Books & Guides on AI Deployment, Data Centers, Rack Design & Optimal Layouts
 
-Curated collection of **free / open-access** high-quality resources. Focused on comprehensive books and substantial guides from reputable sources (Google, Intel, DOE/NREL/LBNL, Harvard, OCP, Schneider, NVIDIA, Chinese institutions, etc.). No low-quality or pirated material.
+Curated collection of free / open-access high-quality resources from Google, NVIDIA, OCP, DOE, Harvard, Chinese institutions (CAICT, Huawei, etc.), and others. Includes Chinese-language materials (summaries translated).
 
-## Core Full Books (Open Access / Free PDF)
+## Core Full Books
+- The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
+- Energy Efficient Servers (Gough et al., Intel) – Springer OA
+- Machine Learning Systems (mlsysbook.ai, Harvard)
 
-### 1. The Data Center as a Computer: Designing Warehouse-Scale Machines, 4th Edition
-- **Authors**: Luiz André Barroso, Urs Hölzle, Parthasarathy Ranganathan (Google)
-- **Why essential**: The definitive treatment of warehouse-scale computers (WSCs). Covers architecture, power, cooling, networking, software stack, costs, modular design, sustainability, and AI/ML workloads. Directly relevant to modern AI training/inference clusters.
-- **Free access**: https://datacenter-book.org/ (Download free PDF)
+## Energy / Layout Guides
+- LBNL/FEMP Best Practices Guide for Energy-Efficient Data Center Design (2024)
+- Schneider WP 144: Establishing a Floor Plan (optimal rack layout)
 
-### 2. Energy Efficient Servers: Blueprints for Data Center Optimization
-- **Authors**: Corey Gough, Ian Steiner, Winston Saunders (Intel)
-- **Free access**: Springer Open Access – https://link.springer.com/book/10.1007/978-1-4302-6638-9
+## Rack & Open Hardware
+- OCP Open Rack V3 + liquid cooling / Mount Diablo / Brazos sidecar specs
+- NVIDIA GB200/GB300 NVL72 designs contributed to OCP + official reference architectures (docs.nvidia.com)
 
-### 3. Machine Learning Systems (MLSysBook.ai)
-- **Author/Editor**: Vijay Janapa Reddi (Harvard) + community
-- **Free access**: https://mlsysbook.ai/
+## Interconnect / Power / Cooling White Papers
+- NVIDIA NVLink (scale-up for NVL72), 800 VDC architecture blogs
+- Google Aquila (NSDI’22) + Jupiter Rising / Evolving papers
 
-## High-Quality Free Guides
+## Chinese Free Resources (Chinese originals + English summaries)
 
-### Best Practices Guide for Energy-Efficient Data Center Design (2024)
-- FEMP / NREL / LBNL – Free PDF: https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf
+### CAICT (China Academy of Information and Communications Technology)
+- **智算中心液冷产业全景研究报告（2025年）**  
+  Full free PDF available from CAICT site.  
+  **Summary (translated)**: Comprehensive panorama of the liquid-cooling industry for intelligent computing centers. Covers upstream/midstream/downstream (components, liquid-cooled IT equipment, complete solutions, real deployments). Analyzes cold-plate vs immersion paths, market size (projected to ~1300亿元 by 2029), standards gaps, and recommendations for R&D, standardization, and industry collaboration. Essential for high-density AI rack cooling strategy in Chinese context.
 
-### Data Center Projects: Establishing a Floor Plan (Schneider WP 144)
-- Optimal rack/room layout principles.
+- **算力中心冷板式液冷发展研究报告（2024年）**  
+  Free PDF from CAICT. Focuses on cold-plate liquid cooling necessity, system design (primary/secondary loops), advantages for high-density, and case studies.
 
-## Rack Design & Open Hardware (OCP + NVL72)
+### Huawei
+- **AI DC白皮书** (Chinese) – free download from Huawei enterprise site.  
+  Reference for CIOs planning intelligent computing data centers. Covers evolution from traditional DC to AI DC, key characteristics, planning for different scales, evaluation systems.
 
-- **OCP Open Rack V3** + liquid cooling / blind-mate / power sidecar (Mount Diablo, Brazos) specs: https://www.opencompute.org/
-- **NVIDIA GB200 / GB300 NVL72** rack and tray designs contributed to OCP (liquid-cooled, 72-GPU NVLink domain). See NVIDIA Technical Blog and OCP documentation for the contributed CAD/specs.
-- NVIDIA official NVL72 reference architectures, network logical architecture, and deployment guides on docs.nvidia.com (free).
+- **AIDC机房参考设计白皮书** – recent Huawei release on AIDC machine-room reference design (liquid cooling, power, architecture for high-density AI clusters).
 
-## Interconnects, Power & Cooling White Papers
+### Chinese Standards
+- **T/CECS 1903-2025 智能计算中心设计标准** (Intelligent Computing Center Design Standard)  
+  Official Chinese standard for design of intelligent computing centers. Covers architecture, power, cooling (explicitly prioritizes liquid cooling above certain densities), liquid-cooled server systems, cold plates, etc. Public standard documents available.
 
-### NVIDIA
-- NVLink scale-up network details (5th/6th gen, NVL72):
-  https://developer.nvidia.com/blog/nvidia-nvlink-the-scale-up-network-for-ai-factories/
-- 800 VDC architecture for MW-scale AI racks:
-  https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/
+These Chinese materials provide complementary high-density, liquid-cooling, and domestic AI-cluster design perspectives that pair well with the Western sources (NVL72, OCP, Google fabrics).
 
-### Google
-- Aquila (NSDI ’22): https://www.usenix.org/system/files/nsdi22-paper-gibson.pdf
-- Jupiter Rising (SIGCOMM ’15) and Jupiter Evolving (SIGCOMM ’22) – free via Google Research / ACM
-- Brazos open-source liquid-to-air cooling sidecar for ORv3
-
-## Chinese / Chinese-Institution Free Resources (English or downloadable)
-
-- **CAICT** – Research Report on the Panorama of Liquid Cooling Industry in Intelligent Computing Center (August 2025). English version available. Free download from CAICT site: https://www.caict.ac.cn/english/research/whitepapers/ (look for the liquid cooling intelligent computing center report)
-- Huawei AI Data Center / AIDC strategy materials and white papers (Chinese versions freely downloadable from Huawei enterprise site; cover liquid cooling, power POD, high-density designs).
-- Chinese Engineering Science papers on high-density computing centers and safety (open access PDFs available via engineering.org.cn).
-- Domestic standards such as T/CECS 1903-2025 Intelligent Computing Center Design Standard (public standard documents).
-
-These cover Chinese approaches to liquid cooling, high-density racks (including Ascend-based supernodes), and intelligent computing center design under domestic constraints.
-
-## Additional Strong Free Resources
-
-- LBNL Center of Expertise toolkits: https://datacenters.lbl.gov/
-- NVIDIA DGX / NVL72 / Spectrum-X architecture and deployment docs
-- Ongoing OCP AI rack and liquid cooling contributions
-
-## Notes
-
-Full free textbooks remain rare. The above are the highest-quality publicly available technical resources from the actual builders (Google, NVIDIA, OCP community, Chinese national labs/academies, DOE). Chinese materials are included where free English versions or downloadable PDFs exist.
-
-Repo continuously updated. Contributions of additional verified free high-quality sources welcome.
+## How to Use
+Links point to official free sources. Chinese PDFs can be downloaded and translated as needed. Repo updated continuously.
 
 Last updated: July 2026
