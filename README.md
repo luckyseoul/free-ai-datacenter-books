@@ -39,50 +39,53 @@ Curated collection of **free / open-access** high-quality resources. Focused on 
 
 Open Compute Project (OCP) provides the industry’s leading free, detailed design specifications for high-density racks optimized for hyperscale and AI:
 - Open Rack V3 Base Specification and related IT Gear / Power / Cooling docs: https://www.opencompute.org/ (search Open Rack)
-- Meta, Google, Microsoft contributions (e.g., Mount Diablo power sidecar for AI racks, liquid cooling designs)
+- Meta, Google, Microsoft contributions (e.g., Mount Diablo power sidecar for AI racks, liquid cooling designs, Brazos liquid-to-air sidecar)
 - These are not narrative books but rigorous engineering specifications that define optimal mechanical, power, and thermal interfaces for modern AI racks.
+- Google Brazos open-source liquid-to-air cooling sidecar for ORv3 racks (60 kW class).
 
-## Key Free White Papers & Technical Resources on Interconnects (NVLink, Aquila, etc.)
+## Key Free White Papers & Technical Resources on Interconnects, Power & Cooling (NVLink, Aquila, Jupiter, etc.)
 
-These are essential for AI deployment at rack and cluster scale—high-bandwidth, low-latency GPU-to-GPU and fabric design.
+These are essential for AI deployment at rack and cluster scale.
 
-### NVIDIA NVLink (Scale-Up Network for AI Factories)
-- NVIDIA technical blogs and design docs on NVLink generations (especially 5th/6th gen for Blackwell/Vera Rubin NVL72 racks): 1.8–3.6 TB/s per GPU, all-to-all rack domains (72 GPUs), in-network compute, copper spines, etc.
+### NVIDIA NVLink & Related (Scale-Up for AI Factories)
+- Detailed technical blogs/docs on NVLink generations (5th/6th gen for Blackwell / Vera Rubin NVL72): 1.8–3.6 TB/s per GPU, all-to-all 72-GPU domains, copper spines, in-network compute.
 - Key free resources:
   - https://developer.nvidia.com/blog/nvidia-nvlink-the-scale-up-network-for-ai-factories/
-  - NVIDIA contributions of GB200/GB300 NVL72 designs to OCP
-  - Related: NVSwitch, NVLink Fusion for hybrid ASIC+GPU racks
-- Critical for understanding optimal AI rack layout, power delivery, and cooling at extreme densities.
+  - NVIDIA GB200/GB300 NVL72 designs contributed to OCP
+  - NVLink Fusion for hybrid ASIC+GPU
+  - 800 VDC power architecture for MW-scale racks: https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/
+- Critical for optimal AI rack layout, power delivery, and cooling at extreme densities.
 
-### Google Aquila: Unified Low-Latency Datacenter Network Fabric
-- NSDI 2022 paper by Google (Dan Gibson et al.): Experimental fabric with cell-based GNet protocol, custom ASIC, ultra-low latency RMA, supporting both traditional IP and tight-coupled AI/HPC traffic.
-- Free PDF: https://www.usenix.org/system/files/nsdi22-paper-gibson.pdf
-  (also https://research.google/pubs/aquila-a-unified-low-latency-fabric-for-datacenter-networks/)
-- Achieves <40 µs tail RTT and sub-10 µs RMA; highly relevant to AI cluster networking and disaggregation.
+### Google Aquila & Jupiter Network Fabrics
+- **Aquila** (NSDI 2022): Unified low-latency fabric with GNet protocol, custom ASIC, sub-10 µs RMA. Free PDF: https://www.usenix.org/system/files/nsdi22-paper-gibson.pdf
+- **Jupiter Rising** (SIGCOMM 2015): Decade of Clos topologies and centralized control. Free via Google Research.
+- **Jupiter Evolving** (SIGCOMM 2022): Optical circuit switches + SDN for higher performance, lower power/cost. Free papers linked from Google Cloud blogs and Research site.
+- Highly relevant given production deployment experience with Aquila.
 
-### Other Relevant Free Interconnect / Fabric Resources
-- NVIDIA Spectrum-X / InfiniBand / Quantum switches for scale-out AI fabrics (free architecture guides and blogs on developer.nvidia.com).
-- OCP networking contributions and open designs for high-speed fabrics.
-- Academic evaluations of GPU interconnects (NVLink vs PCIe etc.) – many open-access papers on arXiv/IEEE.
+### Other Relevant Free Interconnect / Fabric / Cooling Resources
+- NVIDIA Spectrum-X / Quantum InfiniBand for scale-out AI fabrics (architecture guides on developer.nvidia.com).
+- OCP liquid cooling specifications, blind-mate interfaces, and AI Open Pod Group architectures.
+- Google open-sourced Brazos liquid-to-air cooling sidecar designs for existing air-cooled environments.
+- Academic and industry evaluations of GPU interconnects (NVLink vs PCIe etc.).
 
 ## Additional Strong Free Resources
 
-- **NVIDIA**: Free eBooks and design guides on accelerated / AI data centers and DGX SuperPOD / NVL72 reference designs (signup often required but free): https://www.nvidia.com/en-us/data-center/
-- **LBNL Center of Expertise for Data Center Efficiency**: Multiple free toolkits, fact sheets, and guides on efficiency and layout: https://datacenters.lbl.gov/
-- **OCP Marketplace & Specs**: Ongoing contributions for liquid-cooled AI racks, high-power designs.
+- **NVIDIA**: Free eBooks and design guides on accelerated / AI data centers and DGX SuperPOD / NVL72 reference designs: https://www.nvidia.com/en-us/data-center/
+- **LBNL Center of Expertise for Data Center Efficiency**: Multiple free toolkits, fact sheets, and guides: https://datacenters.lbl.gov/
+- **OCP Marketplace & Specs**: Ongoing contributions for liquid-cooled AI racks, high-power designs, Mount Diablo, etc.
 
 ## Notes on Scope & Quality
 
-True full free textbooks specifically on “rack design” or pure “AI deployment hardware” are rare—most high-quality material is either proprietary vendor books, paid handbooks (e.g., Wiley Data Center Handbook), or standards. The resources above are the strongest freely available comprehensive treatments from the people who actually built the systems (Google, Intel, hyperscalers via OCP, DOE labs, Harvard systems course, NVIDIA).
+True full free textbooks specifically on “rack design” or pure “AI deployment hardware” are rare. The resources above are the strongest freely available comprehensive treatments from the people who actually built the systems.
 
-The X post (https://x.com/i/status/2079939522935341204) is about a free MIT Computer Vision book—excellent for vision/robotics/embodied AI but off-topic for data-center / rack / AI-infra deployment. Not included here.
+The X post about the MIT Computer Vision book is excellent for vision/robotics but off-topic here and excluded.
 
-MIT Press and MIT OCW have excellent open materials on AI algorithms, systems, and some infrastructure papers, but no matching free full textbook focused on physical data center / rack engineering. The Harvard MLSysBook fills much of the systems + deployment gap.
+MIT has strong open materials on AI theory/systems but limited on physical data-center / rack engineering. Harvard’s MLSysBook covers the systems + deployment side well.
 
 ## How to Use This Repo
 
 - Links point to official free sources.
 - PDFs of open-access works can be downloaded legally from the linked sites.
-- Contributions welcome: open an issue or PR with additional verified free high-quality resources (must be legitimately free / OA).
+- Contributions welcome (especially any additional public Google Aquila-related materials).
 
 Last updated: July 2026
