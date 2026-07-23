@@ -1,43 +1,50 @@
 # Free High-Quality Books & Guides on AI Deployment, Data Centers, Rack Design & Optimal Layouts
 
-Curated collection of free / open-access high-quality resources from Google, NVIDIA, OCP, DOE, Harvard, Chinese institutions (CAICT, Huawei, etc.), and others. Includes Chinese-language materials (summaries translated).
-
-**Primary focus**: Physical AI infrastructure — data centers, rack design, liquid cooling, power, interconnects (NVLink, Aquila, etc.), optimal layouts, high-density AI clusters.
+Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch.
 
 ## Core Full Books (Physical + Systems)
 - The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
 - Energy Efficient Servers (Gough et al., Intel) – Springer OA
 - Machine Learning Systems (mlsysbook.ai, Harvard)
 
-## Energy / Layout Guides
+## Energy / Layout / Rack / Interconnect
 - LBNL/FEMP Best Practices Guide for Energy-Efficient Data Center Design (2024)
-- Schneider WP 144: Establishing a Floor Plan (optimal rack layout)
+- Schneider WP 144: Establishing a Floor Plan
+- OCP Open Rack V3 + Brazos / Mount Diablo liquid cooling
+- NVIDIA GB200/GB300 NVL72 OCP contributions + reference architectures
+- NVIDIA NVLink + 800 VDC blogs
+- Google Aquila (NSDI’22) + Jupiter papers
 
-## Rack & Open Hardware
-- OCP Open Rack V3 + liquid cooling / Mount Diablo / Brazos sidecar specs
-- NVIDIA GB200/GB300 NVL72 designs contributed to OCP + official reference architectures (docs.nvidia.com)
+## Chinese Free Resources
+- CAICT 智算中心液冷产业全景研究报告（2025） + 冷板式液冷报告（2024）
+- Huawei AI DC / AIDC 机房参考设计白皮书
+- T/CECS 1903-2025 智能计算中心设计标准
 
-## Interconnect / Power / Cooling White Papers
-- NVIDIA NVLink (scale-up for NVL72), 800 VDC architecture blogs
-- Google Aquila (NSDI’22) + Jupiter Rising / Evolving papers
+## Building AI / LLMs from Scratch (Software)
+High-quality free educational resources for implementing models, training pipelines, and systems from first principles:
 
-## Chinese Free Resources (Chinese originals + English summaries)
+- **Sebastian Raschka – Build a Large Language Model (From Scratch)**  
+  Official free code repo: https://github.com/rasbt/LLMs-from-scratch (99k+ stars)  
+  Step-by-step PyTorch implementation of a GPT-style LLM (data, embeddings, attention, pretraining, finetuning, instruction tuning). Companion to the book; free video course also available. Gold standard for understanding LLM internals.
 
-### CAICT
-- **智算中心液冷产业全景研究报告（2025年）** – Full free PDF. Comprehensive liquid-cooling industry panorama for intelligent computing centers (cold-plate vs immersion, market to ~1300亿元 by 2029, components, solutions).
-- **算力中心冷板式液冷发展研究报告（2024年）** – Cold-plate focused analysis + cases.
+- **Andrej Karpathy – Neural Networks: Zero to Hero**  
+  Free YouTube series + code: https://karpathy.ai/zero-to-hero.html  
+  Builds from scalar autograd (micrograd) → makemore → full GPT. Companion repos: nanoGPT (https://github.com/karpathy/nanoGPT), build-nanogpt. The most influential free “from scratch” curriculum.
 
-### Huawei
-- **AI DC白皮书** and **AIDC机房参考设计白皮书** – Free Chinese downloads. High-density AI DC / machine-room reference designs (liquid cooling, power, planning).
+- **Train LLM From Scratch** (user-added)  
+  https://github.com/FareedKhan-dev/train-llm-from-scratch  
+  Pure PyTorch Transformer + The Pile pipeline + full post-training (SFT → Reward Model → PPO/DPO/GRPO). Single-GPU friendly (13M–2B+).
 
-### Chinese Standards
-- **T/CECS 1903-2025 智能计算中心设计标准** – Official design standard prioritizing liquid cooling above certain densities.
+- **The Annotated Transformer** (Harvard NLP)  
+  Classic line-by-line annotated implementation of the original “Attention is All You Need” paper. Free online.
 
-## Software / LLM Training from Scratch (User-added)
-- **Train LLM From Scratch** (https://github.com/FareedKhan-dev/train-llm-from-scratch)  
-  High-quality free MIT-licensed educational repo. Implements a full Transformer from scratch in pure PyTorch (following Attention is All You Need). End-to-end pipeline: The Pile data download → tokenization → pretraining (13M to 2B+ params on single GPU) → SFT → Reward Model → PPO / DPO / GRPO post-training. Detailed diagrams, GPU compatibility table, Streamlit UI, and docs. Excellent for understanding model training internals (software side, not physical data-center infrastructure).
+- **Neural Networks from Scratch** (Harrison Kinsley / Sentdex)  
+  Builds neural nets in pure Python/NumPy with no frameworks. Free videos + accompanying materials at nnfs.io.
 
-## Notes
-Chinese PDFs available for download; full English translations of key reports are being added to a `/translations` folder as completed. Repo continuously expanded with free high-quality sources only.
+- Additional strong free materials: Hugging Face free NLP course, modern-llm-notebook collections, and various pure-PyTorch workshop repos (e.g. rasbt/LLM-workshop-2024).
+
+These complement the physical infrastructure collection by covering how the models that run in those racks are actually built and trained.
+
+Repo continuously updated. Chinese full translations in progress.
 
 Last updated: July 2026
