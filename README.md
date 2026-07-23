@@ -24,29 +24,32 @@ Curated collection of free / open-access high-quality resources. Primary focus r
 High-quality free educational resources for implementing models, training pipelines, and systems from first principles:
 
 - **Stanford CS336: Language Modeling from Scratch** (Spring 2026)  
-  Full free YouTube lecture series + course materials + assignments. Taught by Percy Liang & Tatsunori Hashimoto. End-to-end: tokenization → architectures → training → scaling laws → inference → alignment. Course site: https://cs336.stanford.edu/ | Playlist available on Stanford Online YouTube. One of the strongest academic “from scratch” courses currently available.
+  Full free YouTube lecture series + course materials + assignments. Percy Liang & Tatsunori Hashimoto. End-to-end: tokenization → architectures → training → scaling → inference → alignment. https://cs336.stanford.edu/
 
 - **Sebastian Raschka – Build a Large Language Model (From Scratch)**  
-  Official free code repo: https://github.com/rasbt/LLMs-from-scratch (99k+ stars)  
-  Step-by-step PyTorch GPT-style implementation (data, attention, pretraining, finetuning). Free companion videos.
+  https://github.com/rasbt/LLMs-from-scratch (99k+ stars) + free companion videos. Gold-standard pure PyTorch GPT implementation.
 
 - **Andrej Karpathy – Neural Networks: Zero to Hero**  
-  https://karpathy.ai/zero-to-hero.html  
-  micrograd → makemore → full GPT. Companion: nanoGPT, build-nanogpt.
+  https://karpathy.ai/zero-to-hero.html + nanoGPT / build-nanogpt.
 
 - **Maxime Labonne – LLM Course**  
-  https://github.com/mlabonne/llm-course (80k+ stars)  
-  Free structured roadmaps (Fundamentals → LLM Scientist → LLM Engineer) + Colab notebooks for fine-tuning, merging, quantization, evaluation, agents. Extremely practical.
+  https://github.com/mlabonne/llm-course (80k+ stars). Practical roadmaps + Colab notebooks (fine-tune, merge, quantize, agents).
+
+- **Modern LLM Notebook**  
+  https://github.com/walkinglabs/modern-llm-notebook  
+  26 runnable Jupyter notebooks covering tokenizers, attention, MoE, LoRA, RLHF, KV cache, distillation, evaluation, etc. Strong modern-systems coverage.
+
+- **datawhalechina/diy-llm**  
+  Systematic Chinese course covering pretraining data engineering, tokenizer, Transformer, MoE, CUDA/Triton, distributed training, scaling laws, inference optimization, SFT/RLHF/GRPO. Progressive assignments.
 
 - **Train LLM From Scratch**  
   https://github.com/FareedKhan-dev/train-llm-from-scratch  
-  Pure PyTorch + The Pile + full SFT/RLHF/PPO/DPO/GRPO pipeline. Single-GPU friendly.
+  Pure PyTorch + The Pile + full post-training pipeline. Single-GPU friendly.
 
-- **The Annotated Transformer** (Harvard NLP)  
-  Classic annotated “Attention is All You Need” implementation.
+- **rasbt/LLM-workshop-2024**  
+  Hands-on PyTorch workshop: tokenizer → GPT assembly → pretrain → load weights → instruction finetuning with LitGPT.
 
-- **Neural Networks from Scratch** (Harrison Kinsley / Sentdex)  
-  Pure Python/NumPy neural nets. nnfs.io + free videos.
+- **The Annotated Transformer** (Harvard NLP) + **Neural Networks from Scratch** (nnfs.io)
 
 These complement the physical infrastructure collection by covering how the models that run in those racks are actually built and trained.
 
