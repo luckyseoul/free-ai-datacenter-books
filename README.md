@@ -2,7 +2,9 @@
 
 Curated collection of free / open-access high-quality resources from Google, NVIDIA, OCP, DOE, Harvard, Chinese institutions (CAICT, Huawei, etc.), and others. Includes Chinese-language materials (summaries translated).
 
-## Core Full Books
+**Primary focus**: Physical AI infrastructure — data centers, rack design, liquid cooling, power, interconnects (NVLink, Aquila, etc.), optimal layouts, high-density AI clusters.
+
+## Core Full Books (Physical + Systems)
 - The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
 - Energy Efficient Servers (Gough et al., Intel) – Springer OA
 - Machine Learning Systems (mlsysbook.ai, Harvard)
@@ -21,27 +23,21 @@ Curated collection of free / open-access high-quality resources from Google, NVI
 
 ## Chinese Free Resources (Chinese originals + English summaries)
 
-### CAICT (China Academy of Information and Communications Technology)
-- **智算中心液冷产业全景研究报告（2025年）**  
-  Full free PDF available from CAICT site.  
-  **Summary (translated)**: Comprehensive panorama of the liquid-cooling industry for intelligent computing centers. Covers upstream/midstream/downstream (components, liquid-cooled IT equipment, complete solutions, real deployments). Analyzes cold-plate vs immersion paths, market size (projected to ~1300亿元 by 2029), standards gaps, and recommendations for R&D, standardization, and industry collaboration. Essential for high-density AI rack cooling strategy in Chinese context.
-
-- **算力中心冷板式液冷发展研究报告（2024年）**  
-  Free PDF from CAICT. Focuses on cold-plate liquid cooling necessity, system design (primary/secondary loops), advantages for high-density, and case studies.
+### CAICT
+- **智算中心液冷产业全景研究报告（2025年）** – Full free PDF. Comprehensive liquid-cooling industry panorama for intelligent computing centers (cold-plate vs immersion, market to ~1300亿元 by 2029, components, solutions).
+- **算力中心冷板式液冷发展研究报告（2024年）** – Cold-plate focused analysis + cases.
 
 ### Huawei
-- **AI DC白皮书** (Chinese) – free download from Huawei enterprise site.  
-  Reference for CIOs planning intelligent computing data centers. Covers evolution from traditional DC to AI DC, key characteristics, planning for different scales, evaluation systems.
-
-- **AIDC机房参考设计白皮书** – recent Huawei release on AIDC machine-room reference design (liquid cooling, power, architecture for high-density AI clusters).
+- **AI DC白皮书** and **AIDC机房参考设计白皮书** – Free Chinese downloads. High-density AI DC / machine-room reference designs (liquid cooling, power, planning).
 
 ### Chinese Standards
-- **T/CECS 1903-2025 智能计算中心设计标准** (Intelligent Computing Center Design Standard)  
-  Official Chinese standard for design of intelligent computing centers. Covers architecture, power, cooling (explicitly prioritizes liquid cooling above certain densities), liquid-cooled server systems, cold plates, etc. Public standard documents available.
+- **T/CECS 1903-2025 智能计算中心设计标准** – Official design standard prioritizing liquid cooling above certain densities.
 
-These Chinese materials provide complementary high-density, liquid-cooling, and domestic AI-cluster design perspectives that pair well with the Western sources (NVL72, OCP, Google fabrics).
+## Software / LLM Training from Scratch (User-added)
+- **Train LLM From Scratch** (https://github.com/FareedKhan-dev/train-llm-from-scratch)  
+  High-quality free MIT-licensed educational repo. Implements a full Transformer from scratch in pure PyTorch (following Attention is All You Need). End-to-end pipeline: The Pile data download → tokenization → pretraining (13M to 2B+ params on single GPU) → SFT → Reward Model → PPO / DPO / GRPO post-training. Detailed diagrams, GPU compatibility table, Streamlit UI, and docs. Excellent for understanding model training internals (software side, not physical data-center infrastructure).
 
-## How to Use
-Links point to official free sources. Chinese PDFs can be downloaded and translated as needed. Repo updated continuously.
+## Notes
+Chinese PDFs available for download; full English translations of key reports are being added to a `/translations` folder as completed. Repo continuously expanded with free high-quality sources only.
 
 Last updated: July 2026
