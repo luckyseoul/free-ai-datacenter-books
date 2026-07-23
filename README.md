@@ -23,25 +23,30 @@ Curated collection of free / open-access high-quality resources. Primary focus r
 ## Building AI / LLMs from Scratch (Software)
 High-quality free educational resources for implementing models, training pipelines, and systems from first principles:
 
+- **Stanford CS336: Language Modeling from Scratch** (Spring 2026)  
+  Full free YouTube lecture series + course materials + assignments. Taught by Percy Liang & Tatsunori Hashimoto. End-to-end: tokenization → architectures → training → scaling laws → inference → alignment. Course site: https://cs336.stanford.edu/ | Playlist available on Stanford Online YouTube. One of the strongest academic “from scratch” courses currently available.
+
 - **Sebastian Raschka – Build a Large Language Model (From Scratch)**  
   Official free code repo: https://github.com/rasbt/LLMs-from-scratch (99k+ stars)  
-  Step-by-step PyTorch implementation of a GPT-style LLM (data, embeddings, attention, pretraining, finetuning, instruction tuning). Companion to the book; free video course also available. Gold standard for understanding LLM internals.
+  Step-by-step PyTorch GPT-style implementation (data, attention, pretraining, finetuning). Free companion videos.
 
 - **Andrej Karpathy – Neural Networks: Zero to Hero**  
-  Free YouTube series + code: https://karpathy.ai/zero-to-hero.html  
-  Builds from scalar autograd (micrograd) → makemore → full GPT. Companion repos: nanoGPT (https://github.com/karpathy/nanoGPT), build-nanogpt. The most influential free “from scratch” curriculum.
+  https://karpathy.ai/zero-to-hero.html  
+  micrograd → makemore → full GPT. Companion: nanoGPT, build-nanogpt.
 
-- **Train LLM From Scratch** (user-added)  
+- **Maxime Labonne – LLM Course**  
+  https://github.com/mlabonne/llm-course (80k+ stars)  
+  Free structured roadmaps (Fundamentals → LLM Scientist → LLM Engineer) + Colab notebooks for fine-tuning, merging, quantization, evaluation, agents. Extremely practical.
+
+- **Train LLM From Scratch**  
   https://github.com/FareedKhan-dev/train-llm-from-scratch  
-  Pure PyTorch Transformer + The Pile pipeline + full post-training (SFT → Reward Model → PPO/DPO/GRPO). Single-GPU friendly (13M–2B+).
+  Pure PyTorch + The Pile + full SFT/RLHF/PPO/DPO/GRPO pipeline. Single-GPU friendly.
 
 - **The Annotated Transformer** (Harvard NLP)  
-  Classic line-by-line annotated implementation of the original “Attention is All You Need” paper. Free online.
+  Classic annotated “Attention is All You Need” implementation.
 
 - **Neural Networks from Scratch** (Harrison Kinsley / Sentdex)  
-  Builds neural nets in pure Python/NumPy with no frameworks. Free videos + accompanying materials at nnfs.io.
-
-- Additional strong free materials: Hugging Face free NLP course, modern-llm-notebook collections, and various pure-PyTorch workshop repos (e.g. rasbt/LLM-workshop-2024).
+  Pure Python/NumPy neural nets. nnfs.io + free videos.
 
 These complement the physical infrastructure collection by covering how the models that run in those racks are actually built and trained.
 
