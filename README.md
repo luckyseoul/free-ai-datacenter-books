@@ -1,6 +1,6 @@
 # Free High-Quality Books & Guides on AI Deployment, Data Centers, Rack Design & Optimal Layouts
 
-Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch.
+Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch + practical local inference tooling.
 
 ## Core Full Books (Physical + Systems)
 - The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
@@ -20,39 +20,45 @@ Curated collection of free / open-access high-quality resources. Primary focus r
 - Huawei AI DC / AIDC 机房参考设计白皮书
 - T/CECS 1903-2025 智能计算中心设计标准
 
-## Building AI / LLMs from Scratch (Software)
-High-quality free educational resources for implementing models, training pipelines, and systems from first principles:
+## Building AI / LLMs from Scratch (Educational)
+High-quality free resources for implementing models and training pipelines from first principles:
 
-- **Stanford CS336: Language Modeling from Scratch** (Spring 2026)  
-  Full free YouTube lecture series + course materials + assignments. Percy Liang & Tatsunori Hashimoto. End-to-end: tokenization → architectures → training → scaling → inference → alignment. https://cs336.stanford.edu/
+- **Stanford CS336: Language Modeling from Scratch** (Spring 2026) – https://cs336.stanford.edu/
+- **Sebastian Raschka – Build a Large Language Model (From Scratch)** – https://github.com/rasbt/LLMs-from-scratch
+- **Andrej Karpathy – Neural Networks: Zero to Hero** – https://karpathy.ai/zero-to-hero.html + nanoGPT
+- **Maxime Labonne – LLM Course** – https://github.com/mlabonne/llm-course
+- **Modern LLM Notebook** – https://github.com/walkinglabs/modern-llm-notebook
+- **datawhalechina/diy-llm** – systematic Chinese full-stack LLM course
+- **Train LLM From Scratch** – https://github.com/FareedKhan-dev/train-llm-from-scratch
+- **rasbt/LLM-workshop-2024** + Annotated Transformer + nnfs.io
 
-- **Sebastian Raschka – Build a Large Language Model (From Scratch)**  
-  https://github.com/rasbt/LLMs-from-scratch (99k+ stars) + free companion videos. Gold-standard pure PyTorch GPT implementation.
+## Practical AI Tooling & Local Inference (Software Deployment)
+Strong open-source tools for efficient local serving, inference, and AI engineering (selected from popular 2026 lists):
 
-- **Andrej Karpathy – Neural Networks: Zero to Hero**  
-  https://karpathy.ai/zero-to-hero.html + nanoGPT / build-nanogpt.
+- **llama.cpp** – https://github.com/ggerganov/llama.cpp  
+  Efficient C++ inference that runs on almost any device (CPU, GPU, Apple Silicon, etc.).
 
-- **Maxime Labonne – LLM Course**  
-  https://github.com/mlabonne/llm-course (80k+ stars). Practical roadmaps + Colab notebooks (fine-tune, merge, quantize, agents).
+- **vLLM** – https://github.com/vllm-project/vllm  
+  High-performance, high-throughput LLM serving engine.
 
-- **Modern LLM Notebook**  
-  https://github.com/walkinglabs/modern-llm-notebook  
-  26 runnable Jupyter notebooks covering tokenizers, attention, MoE, LoRA, RLHF, KV cache, distillation, evaluation, etc. Strong modern-systems coverage.
+- **Ollama** – https://github.com/ollama/ollama  
+  Simple local LLM runner.
 
-- **datawhalechina/diy-llm**  
-  Systematic Chinese course covering pretraining data engineering, tokenizer, Transformer, MoE, CUDA/Triton, distributed training, scaling laws, inference optimization, SFT/RLHF/GRPO. Progressive assignments.
+- **LocalAI** – https://github.com/mudler/LocalAI  
+  Self-hosted OpenAI-compatible API for local models.
 
-- **Train LLM From Scratch**  
-  https://github.com/FareedKhan-dev/train-llm-from-scratch  
-  Pure PyTorch + The Pile + full post-training pipeline. Single-GPU friendly.
+- **Hugging Face Transformers** – https://github.com/huggingface/transformers  
+  Core library for model loading, training, and inference.
 
-- **rasbt/LLM-workshop-2024**  
-  Hands-on PyTorch workshop: tokenizer → GPT assembly → pretrain → load weights → instruction finetuning with LitGPT.
+- **OpenHands** – https://github.com/OpenHands/OpenHands  
+  Strong open-source AI software engineer / coding agent.
 
-- **The Annotated Transformer** (Harvard NLP) + **Neural Networks from Scratch** (nnfs.io)
+- **Aider / Continue** – AI pair-programming tools.
 
-These complement the physical infrastructure collection by covering how the models that run in those racks are actually built and trained.
+- **DeepSeek** official open-source models.
 
-Repo continuously updated. Chinese full translations in progress.
+These fit the “AI deployment” side in software terms (efficient inference and local serving) and complement the physical data-center resources.
+
+Repo continuously updated.
 
 Last updated: July 2026
