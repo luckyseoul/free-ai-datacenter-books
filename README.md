@@ -1,6 +1,6 @@
 # Free High-Quality Books & Guides on AI Deployment, Data Centers, Rack Design & Optimal Layouts
 
-Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch + practical local inference tooling + free cert study materials.
+Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch + practical local inference tooling + free cert study materials + foundational ML textbooks.
 
 ## Core Full Books (Physical + Systems)
 - The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
@@ -32,31 +32,32 @@ High-quality free resources for implementing models and training pipelines from 
 - **Train LLM From Scratch** – https://github.com/FareedKhan-dev/train-llm-from-scratch
 - **rasbt/LLM-workshop-2024** + Annotated Transformer + nnfs.io
 
-## Practical AI Tooling & Local Inference (Software Deployment)
-Strong open-source tools for efficient local serving, inference, and AI engineering:
+## Foundational Free AI / ML Textbooks
+University-level free books (from popular 2026 lists):
 
+- **Understanding Machine Learning: From Theory to Algorithms** (Shai Shalev-Shwartz & Shai Ben-David)  
+  Classic free theory book. PDF: https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
+
+- **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong)  
+  Excellent free linear algebra / calculus / optimization foundation.  
+  Official free PDF: https://mml-book.github.io/book/mml-book.pdf
+
+- Other titles frequently shared in the same lists: Deep Learning Principles, Deep Learning on Graphs, Algorithmic Machine Learning, Probability Theory resources.
+
+## Practical AI Tooling & Local Inference (Software Deployment)
 - **llama.cpp** – https://github.com/ggerganov/llama.cpp
 - **vLLM** – https://github.com/vllm-project/vllm
 - **Ollama** – https://github.com/ollama/ollama
 - **LocalAI** – https://github.com/mudler/LocalAI
 - **Hugging Face Transformers** – https://github.com/huggingface/transformers
 - **OpenHands** – https://github.com/OpenHands/OpenHands
-- **Aider / Continue** – AI pair-programming tools
-- **DeepSeek** official open-source models
+- **Aider / Continue** + DeepSeek models
 
 ## Free Certification Study Resources
-Shared study materials (Google Drive collections commonly circulated for self-study):
+- **AWS** – https://drive.google.com/drive/folders/1xu0wB2f7Xc6d1NuQ6yP9vxBFVXo1WoIj (highest priority for DC/cloud ops)
+- CISSP / CISA / CISM shared study folders
 
-- **AWS** – https://drive.google.com/drive/folders/1xu0wB2f7Xc6d1NuQ6yP9vxBFVXo1WoIj  
-  Most relevant to data center / cloud ops roles.
-
-- **CISSP** – https://drive.google.com/drive/folders/1OTCyiNN7Km-ZFN_ciDAHGmEeKhyaXrnC
-
-- **CISA** – https://drive.google.com/drive/folders/1vf5E7Yd09km31ZzcJ2_F0VH0hWRMEi8O
-
-- **CISM** – https://drive.google.com/drive/folders/1-Vhz0RPtSnLXfpMcLyirSBPCE3BfcfIm
-
-Note: These are community-shared study dumps. Always cross-check against official exam guides and current blueprints. AWS is the highest priority for DC/AI infrastructure work.
+Also noted from same account: AI Automation practical course (Google Drive) and official free learning platforms (Anthropic, Google AI, NVIDIA CUDA, Hugging Face Learn, etc.).
 
 Repo continuously updated.
 
