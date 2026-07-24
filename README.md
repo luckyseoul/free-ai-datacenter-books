@@ -6,17 +6,26 @@ Curated **offline** collection. Document binaries and README snapshots live unde
 
 | Title | Local file |
 |-------|------------|
-| The Data Center as a Computer (3rd ed. sample / Google pub 45406, 6 pp.) | [`files/core/The-Data-Center-as-a-Computer-3rd.pdf`](files/core/The-Data-Center-as-a-Computer-3rd.pdf) |
+| The Data Center as a Computer — 4th ed. chapters (Markdown mirror) | [`files/core/datacenter-as-a-computer-4th-md/`](files/core/datacenter-as-a-computer-4th-md/) |
+| The Data Center as a Computer — CN translation (Markdown) | [`files/core/datacenter-as-a-computer-cn-md/`](files/core/datacenter-as-a-computer-cn-md/) |
+| The Data Center as a Computer (3rd ed. sample / Google pub 45406) | [`files/core/The-Data-Center-as-a-Computer-3rd.pdf`](files/core/The-Data-Center-as-a-Computer-3rd.pdf) |
 | Energy Efficient Servers (Gough et al., Intel / Springer OA) | [`files/core/Energy-Efficient-Servers.pdf`](files/core/Energy-Efficient-Servers.pdf) |
 | Machine Learning Systems Vol. 1 (mlsysbook.ai) | [`files/core/Machine-Learning-Systems-Vol1.pdf`](files/core/Machine-Learning-Systems-Vol1.pdf) |
 | Machine Learning Systems Vol. 2 | [`files/core/Machine-Learning-Systems-Vol2.pdf`](files/core/Machine-Learning-Systems-Vol2.pdf) |
 | StaffML paper (companion) | [`files/core/StaffML-Paper.pdf`](files/core/StaffML-Paper.pdf) |
 
-> **Note:** The 4th edition of *The Data Center as a Computer* is free from datacenter-book.org but the download API is bot-gated from automated clients. Drop the full PDF into `files/core/` if you fetch it interactively.
+> **Note:** Official PDF from datacenter-book.org is bot-gated; full chapter text is offline as Markdown (GitHub mirrors). Drop the interactive PDF into `files/core/` if you fetch it in a browser.
 
 ## Energy / Layout / Rack / Interconnect
 
-Named resources (LBNL FEMP guide, Schneider WP144, OCP Open Rack, NVIDIA NVL72, Google Aquila) are listed for orientation. Direct PDF hosts for several of these rotated or 403/404’d during the offline harvest; re-add under `files/energy-cooling/` when you have working copies.
+| Resource | Local file |
+|----------|------------|
+| FEMP Best Practices Guide for Energy-Efficient Data Center Design (2024) | [`files/energy-cooling/FEMP-Best-Practices-Data-Center-Design-2024.pdf`](files/energy-cooling/FEMP-Best-Practices-Data-Center-Design-2024.pdf) |
+| LBNL/FEMP Best Practices (historical Wayback copy) | [`files/energy-cooling/LBNL-FEMP-Best-Practices.pdf`](files/energy-cooling/LBNL-FEMP-Best-Practices.pdf) |
+| Google Aquila (NSDI’22, Gibson et al.) | [`files/papers/aquila-nsdi22.pdf`](files/papers/aquila-nsdi22.pdf) |
+| Google Jupiter Rising | [`files/papers/google-jupiter-rising.pdf`](files/papers/google-jupiter-rising.pdf) |
+
+Harvest methods for blocked hosts: see [`files/core/SOURCES.md`](files/core/SOURCES.md).
 
 ## Chinese Free Resources
 
