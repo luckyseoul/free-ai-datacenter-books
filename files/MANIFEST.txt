@@ -101,6 +101,7 @@ files/core/Machine-Learning-Systems-Vol2.pdf
 files/core/SOURCES.md
 files/core/StaffML-Paper.pdf
 files/core/The-Data-Center-as-a-Computer-3rd.pdf
+files/core/The-Data-Center-as-a-Computer-4th.pdf
 files/courses/cs336-stanford.html
 files/courses/karpathy-zero-to-hero.html
 files/energy-cooling/FEMP-Best-Practices-Data-Center-Design-2024.pdf

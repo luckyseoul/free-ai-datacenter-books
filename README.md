@@ -6,15 +6,16 @@ Curated **offline** collection. Document binaries and README snapshots live unde
 
 | Title | Local file |
 |-------|------------|
-| The Data Center as a Computer — 4th ed. chapters (Markdown mirror) | [`files/core/datacenter-as-a-computer-4th-md/`](files/core/datacenter-as-a-computer-4th-md/) |
-| The Data Center as a Computer — CN translation (Markdown) | [`files/core/datacenter-as-a-computer-cn-md/`](files/core/datacenter-as-a-computer-cn-md/) |
-| The Data Center as a Computer (3rd ed. sample / Google pub 45406) | [`files/core/The-Data-Center-as-a-Computer-3rd.pdf`](files/core/The-Data-Center-as-a-Computer-3rd.pdf) |
+| **The Data Center as a Computer 4th ed.** (Barroso/Hölzle/Ranganathan, 362 pp, full PDF) | [`files/core/The-Data-Center-as-a-Computer-4th.pdf`](files/core/The-Data-Center-as-a-Computer-4th.pdf) |
+| Same — chapter Markdown mirror | [`files/core/datacenter-as-a-computer-4th-md/`](files/core/datacenter-as-a-computer-4th-md/) |
+| Same — CN translation Markdown | [`files/core/datacenter-as-a-computer-cn-md/`](files/core/datacenter-as-a-computer-cn-md/) |
+| 3rd ed. sample (Google pub 45406) | [`files/core/The-Data-Center-as-a-Computer-3rd.pdf`](files/core/The-Data-Center-as-a-Computer-3rd.pdf) |
 | Energy Efficient Servers (Gough et al., Intel / Springer OA) | [`files/core/Energy-Efficient-Servers.pdf`](files/core/Energy-Efficient-Servers.pdf) |
 | Machine Learning Systems Vol. 1 (mlsysbook.ai) | [`files/core/Machine-Learning-Systems-Vol1.pdf`](files/core/Machine-Learning-Systems-Vol1.pdf) |
 | Machine Learning Systems Vol. 2 | [`files/core/Machine-Learning-Systems-Vol2.pdf`](files/core/Machine-Learning-Systems-Vol2.pdf) |
 | StaffML paper (companion) | [`files/core/StaffML-Paper.pdf`](files/core/StaffML-Paper.pdf) |
 
-> **Note:** Official PDF from datacenter-book.org is bot-gated; full chapter text is offline as Markdown (GitHub mirrors). Drop the interactive PDF into `files/core/` if you fetch it in a browser.
+> **Note:** Full 4th ed PDF obtained via Springer OA content path (datacenter-book.org API is bot-gated). Workarounds catalog: [`files/core/SOURCES.md`](files/core/SOURCES.md).
 
 ## Energy / Layout / Rack / Interconnect
 
