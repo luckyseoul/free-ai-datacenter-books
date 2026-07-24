@@ -1,6 +1,6 @@
 # Free High-Quality Books & Guides on AI Deployment, Data Centers, Rack Design & Optimal Layouts
 
-Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch + practical local inference tooling + free cert study materials + foundational ML textbooks.
+Curated collection of free / open-access high-quality resources. Primary focus remains physical AI infrastructure (data centers, racks, liquid cooling, power, NVLink/Aquila, Chinese AIDC materials). Expanded software section for building AI from scratch + practical local inference tooling + free cert study materials + foundational ML textbooks + data ingestion tools.
 
 ## Core Full Books (Physical + Systems)
 - The Data Center as a Computer 4th Ed (Barroso et al., Google) – https://datacenter-book.org/
@@ -33,16 +33,10 @@ High-quality free resources for implementing models and training pipelines from 
 - **rasbt/LLM-workshop-2024** + Annotated Transformer + nnfs.io
 
 ## Foundational Free AI / ML Textbooks
-University-level free books (from popular 2026 lists):
-
-- **Understanding Machine Learning: From Theory to Algorithms** (Shai Shalev-Shwartz & Shai Ben-David)  
-  Classic free theory book. PDF: https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
-
+- **Understanding Machine Learning: From Theory to Algorithms** (Shalev-Shwartz & Ben-David)  
+  PDF: https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf
 - **Mathematics for Machine Learning** (Deisenroth, Faisal, Ong)  
-  Excellent free linear algebra / calculus / optimization foundation.  
   Official free PDF: https://mml-book.github.io/book/mml-book.pdf
-
-- Other titles frequently shared in the same lists: Deep Learning Principles, Deep Learning on Graphs, Algorithmic Machine Learning, Probability Theory resources.
 
 ## Practical AI Tooling & Local Inference (Software Deployment)
 - **llama.cpp** – https://github.com/ggerganov/llama.cpp
@@ -53,11 +47,29 @@ University-level free books (from popular 2026 lists):
 - **OpenHands** – https://github.com/OpenHands/OpenHands
 - **Aider / Continue** + DeepSeek models
 
+## Data Ingestion / Web-to-LLM Tools
+High-quality open-source tools for turning the web (and documents) into clean LLM-ready data:
+
+- **Firecrawl** – https://github.com/firecrawl/firecrawl  
+  Crawl any site, render JS, return structured data ready for AI.
+
+- **Crawl4AI** – https://github.com/unclecode/crawl4ai  
+  Converts websites into clean markdown optimized for LLMs. High stars, Apache 2.0.
+
+- **Browser-Use** – https://github.com/browser-use/browser-use  
+  AI agent that controls a real browser (click, scroll, login, extract).
+
+- **MarkItDown** (Microsoft) – https://github.com/microsoft/markitdown  
+  Convert PDF, Office, HTML, images → clean markdown.
+
+- **Scrapy** – https://github.com/scrapy/scrapy  
+  Battle-tested industrial web scraping framework.
+
+Also frequently listed: Crawlee, Scrapling, AutoScraper, curl-impersonate.
+
 ## Free Certification Study Resources
 - **AWS** – https://drive.google.com/drive/folders/1xu0wB2f7Xc6d1NuQ6yP9vxBFVXo1WoIj (highest priority for DC/cloud ops)
 - CISSP / CISA / CISM shared study folders
-
-Also noted from same account: AI Automation practical course (Google Drive) and official free learning platforms (Anthropic, Google AI, NVIDIA CUDA, Hugging Face Learn, etc.).
 
 Repo continuously updated.
 
