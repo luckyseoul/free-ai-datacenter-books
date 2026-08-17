@@ -129,6 +129,20 @@ Unofficial SASS, Apple AGX/AMX/ANE, and measured x86 µarch. Full table in [`CAT
 
 Repos (README snapshots under [`files/github-docs/`](files/github-docs/)): `CuAssembler`, `maxas`, `turingas`, `sass-king`, `blackwell-isa` (SM120), `dougallj/applegpu`, `corsix/amx`, `eiln/ane`, `AsahiLinux`, `NVIDIA/open-gpu-doc`.
 
+## Device docs — RISC-V, Zynq, Arm enterprise (GB10 / GX10 / Grace)
+
+| Resource | Local file |
+|----------|------------|
+| RISC-V ISA Manual (2026-08-14 unpriv+priv) | [`files/device-docs/riscv-isa-spec-2026-08-14.pdf`](files/device-docs/riscv-isa-spec-2026-08-14.pdf) |
+| NVIDIA DGX Spark user guide (GB10 Grace Blackwell) | [`files/device-docs/DGX-Spark-User-Guide.pdf`](files/device-docs/DGX-Spark-User-Guide.pdf) |
+| NVIDIA DGX Spark datasheet | [`files/device-docs/NVIDIA-DGX-Spark-datasheet.pdf`](files/device-docs/NVIDIA-DGX-Spark-datasheet.pdf) |
+| **ASUS Ascent GX10** datasheet (GB10 OEM) | [`files/device-docs/ASUS-Ascent-GX10-datasheet.pdf`](files/device-docs/ASUS-Ascent-GX10-datasheet.pdf) |
+| Fujitsu A64FX µarch + HPC extension (Fugaku) | [`files/device-docs/A64FX-microarchitecture.pdf`](files/device-docs/A64FX-microarchitecture.pdf) · [`A64FX-HPC-extension.pdf`](files/device-docs/A64FX-HPC-extension.pdf) |
+| SiFive Intelligence Gen 2 + X280 datacenter (Google TPU) | [`files/device-docs/SiFive-Intelligence-Gen2-Family-Brief.pdf`](files/device-docs/SiFive-Intelligence-Gen2-Family-Brief.pdf) · [`SiFive-X280-Datacenter-CaseStudy.pdf`](files/device-docs/SiFive-X280-Datacenter-CaseStudy.pdf) |
+| Zynq-7000 UG585 TRM | [`files/device-docs/ug585-Zynq-7000-TRM.pdf`](files/device-docs/ug585-Zynq-7000-TRM.pdf) (v1.4; newer on AMD portal) |
+
+Grace 72/144-core Neoverse V2: [HTML tuning guide](https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/). Ampere / Graviton getting-started snapshots in `files/github-docs/`. Full table: [`CATALOG.md`](CATALOG.md).
+
 ## GitHub catalogs (README snapshots, 2026-08-17)
 
 OCP AI fabrics, NVLink tooling, and awesome-lists live under [`files/github-docs/`](files/github-docs/). Highlights: `OCP-OCDAI-training-fabric`, `OCP-OAI`, Catalina/Olympus/Zaius, `NVIDIA/topograph`, `NVIDIA/Fabric-Manager-Client`, `awesome-gpu-engineering`, `awesome-ai-accelerators`, `awesome-hpc`, SemiAnalysis InferenceX.
@@ -147,7 +161,8 @@ files/
   papers/         # conference / arXiv PDFs
   cad-gerber/     # OCP Gerbers (DC-SCM, SXM2 riser)
   reverse-eng/    # SASS / TPU / Agner Fog / microbenchmark papers
+  device-docs/    # RISC-V ISA, Zynq UG585, GB10/GX10, A64FX, SiFive
   github-docs/    # GitHub README snapshots
 ```
 
-Last updated: 2026-08-17 — plus reverse-engineered SASS/Apple/ANE/TPU/CPU µarch docs. See [`CATALOG.md`](CATALOG.md).
+Last updated: 2026-08-17 — plus RISC-V / Zynq / Arm enterprise (Grace, GB10, GX10, A64FX). See [`CATALOG.md`](CATALOG.md).

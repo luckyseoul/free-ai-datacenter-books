@@ -61,6 +61,12 @@
 | Barreleye SXM2 riser Gerber CAM | GitHub raw `HW/EE/GBR/Barreleye-G2-SXM2-RISER-EVT-HW-GBR.tgz` (other GBR zips are LFS pointers) |
 | Jia/Luo GPU microarch + Tensor Core + TPU v1 papers | arXiv `/pdf/<id>.pdf` (1804.06826, 1903.07486, 2208.11174, 2402.13499, 2501.12084, 2206.02874, 1704.04760) |
 | Agner Fog CPU manuals | `agner.org/optimize/{instruction_tables,microarchitecture}.pdf` |
+| RISC-V ISA Manual | GitHub `riscv/riscv-isa-manual` latest release `riscv-spec.pdf` |
+| DGX Spark user guide | `docs.nvidia.com/dgx/dgx-spark/dgx-spark.pdf` |
+| ASUS Ascent GX10 datasheet | `dlcdnwebimgs.asus.com/files/media/…/asus-ascent-gx10-datasheet.pdf` |
+| UG585 Zynq-7000 TRM | Mirror `inertial-solutions.us/pdf_files/ug585-Zynq-7000-TRM.pdf` (v1.4; AMD portal JS-gated) |
+| A64FX manuals | `github.com/fujitsu/A64FX` `doc/*.pdf` |
+| SiFive Intelligence / X280 | `sifive.cdn.prismic.io` PDFs from sifive.com/documentation |
 | AICA_E.pdf + other DC manuals | SegaRetro `images/<hash>/…` from known/thumb paths |
 | Saturn ST- set (103 PDFs) | Antime bulk `files/*.pdf` |
 | JVS WIP | Direct `daifukkat.su` PDF |

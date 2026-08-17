@@ -1,0 +1,251 @@
+# AWS Graviton Technical Guide
+
+This repository provides technical guidance for users and developers using [Amazon EC2 instances powered by AWS Graviton processors](https://aws.amazon.com/ec2/graviton/) (including the latest generation Graviton5 processors). While it calls out specific features of the Graviton processors themselves, this repository is also generally useful for anyone running code on Arm-based systems.
+
+# Contents
+* [Transitioning to Graviton](#transitioning-to-graviton)
+* [Building for Graviton](#building-for-graviton2-graviton3-and-graviton3e)
+* [Optimizing for Graviton](optimizing.md)
+* [Taking advantage of Arm Advanced SIMD instructions](SIMD_and_vectorization.md)
+* [Recent software updates relevant to Graviton](#recent-software-updates-relevant-to-graviton)
+* Language-specific considerations
+	* [C/C++](c-c++.md)
+	* [Go](golang.md)
+	* [Groovy](groovy.md)
+	* [Java](java.md)
+	* [.NET](dotnet.md)
+	* [Node.JS](nodejs.md)
+	* [PHP](php.md)
+	* [Python](python.md)
+	* [Rust](rust.md)
+* [Containers on Graviton](containers.md)
+* [Headless website testing with Chrome and Puppeteer on Graviton](software/ChromeAndPuppeteer.md)
+* [Lambda on Graviton](#lambda-on-graviton)
+* [Linux Kernel](linux_kernel.md)
+* [Operating Systems support](os.md)
+* [Third-party Software Vendors](isv.md)
+* [Finding and managing AMIs for Graviton, with AWS SystemManager or CloudFormation](amis_cf_sm.md)
+* [DPDK, SPDK, and other datapath software](dpdk_spdk.md)
+* Machine Learning
+	* [PyTorch](machinelearning/pytorch.md)
+	* [llama.cpp](machinelearning/llama.cpp.md)
+	* [TensorFlow](machinelearning/tensorflow.md)
+	* [vLLM](machinelearning/vllm.md)
+	* [ONNX](machinelearning/onnx.md)
+* [R](R.md)
+* [Spark on Graviton](DataAnalytics.md)
+* [HPC (High Performance Computing)](HPC/)
+* [Known issues and workarounds](#known-issues-and-workarounds)
+* [AWS Managed Services available on Graviton](managed_services.md)
+* [Graviton Performance Runbook](perfrunbook/)
+* [Assembly Optimization Guide for Graviton Arm64 Processors](arm64-assembly-optimization.md)
+* [Tools and Agent Skills](tools/)
+* [Additional resources](#additional-resources)
+* [How To Resources](howtoresources.md)
+* [Blog Posts](#blog-posts)
+* [Case Studies](#case-studies)
+
+# Transitioning to Graviton
+If you are new to Graviton and want to understand how to identify target workloads, how to plan a transition project, how to test your workloads on AWS Graviton and finally how deploy in production, please read [the key considerations to take into account when transitioning workloads to AWS Graviton based Amazon EC2 instances](transition-guide.md).
+
+# Building for Graviton
+
+Processor|Graviton2	|Graviton3(E)	| Graviton4 | Graviton5 |
+---|---|---|---|---|
+Instances	|[M6g/M6gd](https://aws.amazon.com/ec2/instance-types/m6g/), [C6g/C6gd/C6gn](https://aws.amazon.com/ec2/instance-types/c6g/), [R6g/R6gd](https://aws.amazon.com/ec2/instance-types/r6g/), [T4g](https://aws.amazon.com/ec2/instance-types/t4g), [X2gd](https://aws.amazon.com/ec2/instance-types/x2/), [G5g](https://aws.amazon.com/ec2/instance-types/g5g/), and [I4g/Im4gn/Is4gen](https://aws.amazon.com/ec2/instance-types/i4g/)	|[C7g/C7gd/C7gn](https://aws.amazon.com/ec2/instance-types/c7g/), [M7g/M7gd](https://aws.amazon.com/ec2/instance-types/m7g/), [R7g/R7gd](https://aws.amazon.com/ec2/instance-types/r7g/), and [Hpc7g](https://aws.amazon.com/ec2/instance-types/hpc7g/)	|[C8g](https://aws.amazon.com/ec2/instance-types/c8g/), [M8g](https://aws.amazon.com/ec2/instance-types/m8g/), [R8g](https://aws.amazon.com/ec2/instance-types/r8g/), [X8g](https://aws.amazon.com/ec2/instance-types/x8g/), and [I8g](https://aws.amazon.com/ec2/instance-types/i8g/) | [M9g/M9gd](https://aws.amazon.com/ec2/instance-types/m9g/) |
+Core	|[Neoverse-N1](https://developer.arm.com/documentation/100616/0301)	|[Neoverse-V1](https://developer.arm.com/documentation/101427/latest/)	|[Neoverse-V2](https://developer.arm.com/documentation/102375/latest) | [Neoverse-V3](https://developer.arm.com/documentation/107734/latest)
+Frequency	|2500MHz	|2600MHz	|2800MHz (2700MHz for 48xlarge) | 3300MHz
+Turbo supported	|No	|No	|No |No
+Software Optimization Guide (Instruction Throughput and Latency)|[SWOG](https://developer.arm.com/documentation/pjdoc466751330-9707/latest/)|[SWOG](https://developer.arm.com/documentation/pjdoc466751330-9685/latest/) |[SWOG](https://developer.arm.com/documentation/PJDOC-466751330-593177/latest/) | [SWOG](https://developer.arm.com/documentation/110079/latest)
+Interconnect	|CMN-600	|CMN-650	|CMN-700 | CMN-S3 |
+Architecture revision	|ARMv8.2-a	|ARMv8.4-a	|Armv9.0-a | Armv9.2-a |
+[32bit Backward Compatibility](https://developer.arm.com/documentation/ka006014/latest/) |Userspace only |Userspace only |No support | No support |
+Additional  features	|fp16, rcpc, dotprod, crypto	|sve, rng, bf16, int8	|sve2, sve-int8, sve-bf16, sve-bitperm, sve-crypto | afp, wfxt |
+Recommended `-mcpu` flag	([more information](c-c++.md#enabling-arm-architecture-specific-features))|`neoverse-n1` |`neoverse-512tvb` |`neoverse-512tvb` | `neoverse-512tvb` |
+RNG Instructions	|No	|Yes	|Yes |Yes |
+SIMD instructions	|2x Neon 128bit vectors	|4x Neon 128bit vectors / 2x SVE 256bit	|4x Neon/SVE 128bit vectors | 4x Neon/SVE 128bit vectors |
+LSE (atomic mem operations)	|yes	|yes	|yes |yes |
+Pointer Authentication	|no	|yes	|yes |yes |
+Branch Target Identification |no |no |yes |yes |
+Cores	|64	|64	|96 per socket (192 for 2-socket 48xlarge) | 192 |
+L1 cache (per core)	|64kB inst / 64kB data	|64kB inst / 64kB data	|64kB inst / 64kB data |64kB inst / 64kB data |
+L2 cache (per core)	|1MB	|1MB	|2MB | 2MB |
+LLC (shared)	|32MB	|32MB	|36MB | 48MB per NUMA (<= 16xlarge), or 96MB per NUMA (24xlarge and 48xlarge) |
+Memory (NUMA) nodes | 1 | 1 | 1  (2 for 48xlarge) | 1 (2 for 16xlarge and 48xlarge)
+DRAM	|8x DDR4	|8x DDR5	|12x DDR5 (24x for 48xlarge) | 12x DDR5 |
+DDR Encryption	|yes	|yes	|yes |yes |
+
+# Optimizing for Graviton
+Please refer to [optimizing](optimizing.md) for general debugging and profiling information.  For detailed checklists on optimizing and debugging performance on Graviton, see our [performance runbook](perfrunbook/).
+
+Different architectures and systems have differing capabilities, which means some tools you might be familiar with on one architecture don't have equivalent on AWS Graviton. Documented [Monitoring Tools](Monitoring_Tools_on_Graviton.md) with some of these utilities.
+
+Furthermore, different generations of Graviton support different features, as noted in the table above. For example,
+Graviton3 supports SVE but Graviton2 does not. Graviton4 and Graviton5 support SVE2 and SVE. For some applications it may be
+advantageous to implement performance critical kernels to make use of the highest performing feature set available which
+may not be known until runtime. For this, the best practice is to consult HWCAPS. For details on how to do this, see
+[our guide on HWCAPS runtime feature detection](runtime-feature-detection.md).
+
+# Recent software updates relevant to Graviton
+There is a huge amount of activity in the Arm software ecosystem and improvements are being
+made on a daily basis. As a general rule later versions of compilers, language runtimes, and applications
+should be used whenever possible. The table below includes known recent changes to popular
+packages that improve performance (if you know of others please let us know).
+
+Note: most rows below show the earliest version that introduced the
+referenced Graviton/Arm64 improvement. A few rows (currently .NET and
+PHP) instead show the **lowest version still under upstream support**,
+because the original Graviton-improvement floor is now end-of-life and
+recommending it as a target for new deployments would be misleading.
+The accompanying language-specific guide (e.g. [dotnet.md](dotnet.md),
+[php.md](php.md)) has the full version history. In all cases later
+versions generally include additional optimizations and bug fixes and
+should be preferred for new deployments.
+
+Package | Version | Improvements
+--------|:-:|-------------
+bazel	| [3.4.1+](https://github.com/bazelbuild/bazel/releases) | Pre-built bazel binary for Graviton/Arm64. [See below](#bazel-on-linux) for installation.
+Cassandra | 4.0+ | Supports running on Java/Corretto 11, improving overall performance
+FFmpeg  | 6.0+ | Improvements to scaling and improvements for codec libraries including `libaom`, `libx265`. We recommend [building FFmpeg from source](video-encoding/ffmpeg-build/) with latest codec releases. For more information about FFmpeg on Graviton, read the blog post on AWS Open Source Blog, [Video Encoding on Graviton in 2025](https://aws.amazon.com/blogs/opensource/video-encoding-on-graviton-in-2025/).
+HAProxy  | 2.4+  | A [serious bug](https://github.com/haproxy/haproxy/issues/958) was fixed. Additionally, building with `CPU=armv81` improves HAProxy performance by 4x so please rebuild your code with this flag.
+MariaDB | 10.4.14+ | Default build now uses -moutline-atomics, general correctness bugs for Graviton fixed.
+mongodb | 4.2.15+ / 4.4.7+ / 5.0.0+ | Improved performance on graviton, especially for internal JS engine. LSE support added in [SERVER-56347](https://jira.mongodb.org/browse/SERVER-56347).
+MySQL   | 8.0.23+ | Improved spinlock behavior, compiled with -moutline-atomics if compiler supports it.
+PostgreSQL | 15+ | General scalability improvements plus additional [improvements to spin-locks specifically for Arm64](https://commitfest.postgresql.org/37/3527/)
+.NET | [8+](https://dotnet.microsoft.com/download/dotnet/8.0) | .NET has continued to deliver large Arm64 performance gains since [.NET 5](https://devblogs.microsoft.com/dotnet/Arm64-performance-in-net-5/); see [Arm64 performance improvements in .NET 8](https://devblogs.microsoft.com/dotnet/this-arm64-performance-in-dotnet-8/) and [Arm64 vectorization in .NET 9](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9/runtime#arm64-vectorization-in-net-libraries). .NET 8 (LTS) is the recommended minimum and [.NET 10 (LTS)](https://dotnet.microsoft.com/download/dotnet/10.0) is the current LTS preferred for new projects; .NET 5/6/7 are out of support. See also [Powering .NET 8 with AWS Graviton3: Benchmarks](https://aws.amazon.com/blogs/dotnet/powering-net-8-with-aws-graviton3-benchmarks/) and the [.NET on Graviton guide](dotnet.md).
+OpenH264 | [2.1.1+](https://github.com/cisco/openh264/releases/tag/v2.1.1) | Pre-built Cisco OpenH264 binary for Graviton/Arm64. 
+PCRE2   | 10.34+  | Added NEON vectorization to PCRE's JIT to match first and pairs of characters. This may improve performance of matching by up to 8x. This fixed version of the library now is shipping with Ubuntu 20.04 and PHP 8.
+PHP     | 8.2+    | Currently supported PHP versions perform well on Graviton. PHP 7.4 included initial performance improvements but is EOL.
+pip     | 19.3+   | Enable installation of python wheel binaries on Graviton
+PyTorch | 2.0+    | Optimize Inference latency and throughput on Graviton. [AWS DLCs and python wheels are available](machinelearning/pytorch.md).
+ruby    | 3.0+ | Enable arm64 optimizations that improve performance by as much as 40%. These changes have also been back-ported to the Ruby shipping with AmazonLinux2, Fedora, and Ubuntu 20.04.
+Spark | 3.0+ | Supports running on Java/Corretto 11, improving overall performance.
+zlib    | zlib-ng 2.3.3+  | The original [zlib](https://github.com/madler/zlib) shipped by most distributions has no Arm optimizations. For the best performance on Graviton, use [zlib-ng](https://github.com/zlib-ng/zlib-ng) 2.3.3 or later, which now outperforms our previous recommendation of [zlib-cloudflare](https://github.com/cloudflare/zlib).
+
+# Containers on Graviton
+You can run Docker, Kubernetes, Amazon ECS, and Amazon EKS on Graviton. Amazon ECR supports multi-arch containers.
+Please refer to [containers](containers.md) for information about running container-based workloads on Graviton.
+
+# [Lambda on Graviton](aws-lambda/)
+[AWS Lambda](https://aws.amazon.com/lambda/) now allows you to configure new and existing functions to run on Arm-based AWS Graviton2 processors in addition to x86-based functions. Using this processor architecture option allows you to get up to 34% better price performance. Duration charges are 20 percent lower than the current pricing for x86 with [millisecond granularity](https://aws.amazon.com/blogs/aws/new-for-aws-lambda-1ms-billing-granularity-adds-cost-savings/). This also applies to duration charges when using [Provisioned Concurrency](https://aws.amazon.com/blogs/aws/new-provisioned-concurrency-for-lambda-functions/). Compute [Savings Plans](https://aws.amazon.com/blogs/aws/savings-plan-update-save-up-to-17-on-your-lambda-workloads/) supports Lambda functions powered by Graviton2. For more details on Lambda's arm64 architecture support, see [Lambda instruction set architectures](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+
+The [Lambda](aws-lambda/) page highlights some of the migration considerations and also provides some simple to deploy demos you can use to explore how to build and migrate to Lambda functions using Arm/Graviton2.
+
+# Operating Systems
+
+Please check [os.md](os.md) for more information about which operating system to run on Graviton based instances.
+
+# Known issues and workarounds
+
+## Postgres
+Postgres performance can be heavily impacted by not using [LSE](https://github.com/aws/aws-graviton-getting-started/blob/main/c-c%2B%2B.md#large-system-extensions-lse).
+Today, postgres binaries from distributions (e.g. Ubuntu) are not built with `-moutline-atomics` or `-march=armv8.2-a` which would enable LSE.  Note: Amazon RDS for PostgreSQL isn't impacted by this. 
+
+In November 2021 PostgreSQL started to distribute Ubuntu 20.04 packages optimized with `-moutline-atomics`.
+For Ubuntu 20.04, we recommend using the PostgreSQL PPA instead of the packages distributed by Ubuntu Focal.
+Please follow [the instructions to set up the PostgreSQL PPA.](https://www.postgresql.org/download/linux/ubuntu/)
+
+## Python installation on some Linux distros
+The default installation of pip on some Linux distributions is old \(<19.3\) to install binary wheel packages released for Graviton.  To work around this, it is recommended to upgrade your pip installation using:
+```
+sudo python3 -m pip install --upgrade pip
+```
+
+## Bazel on Linux
+The [Bazel build tool](https://www.bazel.build/) now releases a pre-built binary for arm64. As of October 2020, this is not available in their custom Debian repo, and Bazel does not officially provide an RPM. Instead, we recommend using the [Bazelisk installer](https://docs.bazel.build/versions/master/install-bazelisk.html), which will replace your `bazel` command and [keep bazel up to date](https://github.com/bazelbuild/bazelisk/blob/master/README.md).
+
+Below is an example using the [latest Arm binary release of Bazelisk](https://github.com/bazelbuild/bazelisk/releases/latest):
+```
+wget https://github.com/bazelbuild/bazelisk/releases/download/v1.29.0/bazelisk-linux-arm64
+chmod +x bazelisk-linux-arm64
+sudo mv bazelisk-linux-arm64 /usr/local/bin/bazel
+bazel
+```
+
+Bazelisk itself should not require further updates, as its only purpose is to keep Bazel updated.
+
+## zlib on Linux
+Linux distributions generally ship the original [zlib](https://github.com/madler/zlib) without any Arm optimizations. [zlib-ng](https://github.com/zlib-ng/zlib-ng) is an actively maintained fork that delivers significantly faster compression and decompression on both Arm and x86, and as of 2.3.3 outperforms the older [zlib-cloudflare](https://github.com/cloudflare/zlib) fork on Graviton. To build and install zlib-ng with a zlib-compatible API:
+```
+git clone https://github.com/zlib-ng/zlib-ng.git
+cd zlib-ng
+git checkout 2.3.3
+./configure --prefix=$HOME --zlib-compat
+make
+make install
+```
+Make sure to have the full path to your lib at $HOME/lib in /etc/ld.so.conf and run ldconfig.
+
+For JDKs that dynamically link to the system zlib, you can set LD_LIBRARY_PATH to point to the directory where your newly built version of zlib-ng is located or load that library with LD_PRELOAD.
+
+You can check the libz that JDK is dynamically linked against with:
+```
+$ ldd /Java/jdk-11.0.8/lib/libzip.so | grep libz
+libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007ffff7783000)
+```
+
+NOTE: Linux versions of OpenJDK and current Amazon Corretto releases (Corretto 11 since 11.0.20, Corretto 17 since 17.0.8, and Corretto 21+) dynamically link to zlib. Older Corretto builds bundled zlib statically, and this behavior can still vary by JDK vendor and platform.
+
+
+# Blog Posts
+
+## HPC
+ * [Application deep-dive into the AWS Graviton3E-based Amazon EC2 Hpc7g instance](https://aws.amazon.com/blogs/hpc/application-deep-dive-into-the-graviton3e-based-amazon-ec2-hpc7g-instance/)
+ * [Rescale Automates the Deployment of Ansys LS-DYNA and Ansys Fluent Workloads on Amazon EC2 Hpc7g Instances](https://rescale.com/blog/rescale-automates-the-deployment-of-ansys-ls-dyna-and-ansys-fluent-workloads-on-amazon-ec2-hpc7g-instances/)
+ * [Lattice Boltzmann simulation with Palabos on AWS using Graviton-based Amazon EC2 Hpc7g instances](https://aws.amazon.com/blogs/hpc/lattice-boltzmann-simulation-with-palabos-on-aws-using-graviton-based-amazon-ec2-hpc7g-instances/)
+ * [Instance sizes in the Amazon EC2 Hpc7 family – a different experience](https://aws.amazon.com/blogs/hpc/instance-sizes-in-the-amazon-ec2-hpc7-family-a-different-experience/)
+ * [Checkpointing HPC applications using the Spot Instance two-minute notification from Amazon EC2](https://aws.amazon.com/blogs/hpc/checkpointing-hpc-applications-using-the-spot-instance-two-minute-notification-from-amazon-ec2/)
+ * [Best practices for running molecular dynamics simulations on AWS Graviton3E](https://aws.amazon.com/blogs/hpc/best-practices-for-running-molecular-dynamics-simulations-on-aws-graviton3e/)
+
+
+## Machine Learning
+ * [Optimized PyTorch 2.0 inference with AWS Graviton processors](https://aws.amazon.com/blogs/machine-learning/optimized-pytorch-2-0-inference-with-aws-graviton-processors/)
+ * [Reduce Amazon SageMaker inference cost with AWS Graviton](https://aws.amazon.com/blogs/machine-learning/reduce-amazon-sagemaker-inference-cost-with-aws-graviton/)
+ * [PyTorch blog: Optimized PyTorch 2.0 Inference with AWS Graviton processors](https://pytorch.org/blog/optimized-pytorch-w-graviton/)
+ * [PyTorch Inference Performance Tuning on AWS Graviton Processors](https://pytorch.org/tutorials/recipes/inference_tuning_on_aws_graviton.html)
+ * [PyTorch blog: Accelerated PyTorch inference with torch.compile on AWS Graviton processors](https://pytorch.org/blog/accelerated-pytorch-inference/)
+ * [Sprinklr improves performance by 20% and reduces cost by 25% for machine learning inference on AWS Graviton3](https://aws.amazon.com/blogs/machine-learning/sprinklr-improves-performance-by-20-and-reduces-cost-by-25-for-machine-learning-inference-on-aws-graviton3/)
+ * [Run machine learning inference workloads on AWS Graviton-based instances with Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/run-machine-learning-inference-workloads-on-aws-graviton-based-instances-with-amazon-sagemaker/)
+ * [Accelerate NLP inference with ONNX Runtime on AWS Graviton processors](https://aws.amazon.com/blogs/machine-learning/accelerate-nlp-inference-with-onnx-runtime-on-aws-graviton-processors)
+ * [Best-in-class LLM Performance on Arm Neoverse V1 based AWS Graviton3 CPUs](https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/best-in-class-llm-performance)
+ * [Accelerating Popular Hugging Face Models using Arm Neoverse](https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/accelerating-sentiment-analysis-on-arm-neoverse-cpus)
+ * [Run LLMs on CPU with Amazon SageMaker Real-time Inference](https://community.aws/content/2eazHYzSfcY9flCGKsuGjpwqq1B/run-llms-on-cpu-with-amazon-sagemaker-real-time-inference?lang=en)
+ * [Accelerating large-scale neural network training on CPUs with ThirdAI and AWS Graviton](https://aws.amazon.com/blogs/machine-learning/accelerating-large-scale-neural-network-training-on-cpus-with-thirdai-and-aws-graviton/)
+ * [Enhancing LLM Serving with Torch Compiled RAG on AWS Graviton](https://github.com/pytorch/serve/tree/usecase/rag_based_llm/examples/usecases/RAG_based_LLM_serving#enhancing-llm-serving-with-torch-compiled-rag-on-aws-graviton)
+ * [Intro to Llama on Graviton](https://dev.to/aws-heroes/intro-to-llama-on-graviton-1dc)
+ * [Small Language Models (SLMs) inference with llama.cpp on Graviton4](https://community.aws/content/2pViH36qEfqDYwv0kEysJ0kqDp4/small-language-models-slms-inference-with-llama-cpp-on-graviton4)
+ * [Run DeepSeek R1 LLM Inference on AWS Graviton](machinelearning/llama.cpp.md/#run-deepseek-r1-llm-inference-on-aws-graviton)
+ * [DeepSeek-R1 Distill Model on CPU with AWS Graviton4 for batch inference](https://community.aws/content/2rhRJI6cxBa1Ib5f3TjsfPadpXs/deploying-deepseek-r1-distill-llama-70b-for-batch-inference-on-aws-graviton4)
+   
+## Other
+ * [Optimized Video Encoding with FFmpeg on AWS Graviton Processors](https://aws.amazon.com/blogs/opensource/optimized-video-encoding-with-ffmpeg-on-aws-graviton-processors/)
+ * [Video Encoding on Graviton in 2025](https://aws.amazon.com/blogs/opensource/video-encoding-on-graviton-in-2025/)
+ * [Using Amazon APerf to go from 50% below to 36% above performance target](https://aws.amazon.com/blogs/compute/using-amazon-aperf-to-go-from-50-below-to-36-above-performance-target/)
+
+# Case Studies
+
+## HPC
+ * [Encored Technologies Successfully Built an HPC on AWS for Weather Research & Forecasting (WRF)](https://aws.amazon.com/solutions/case-studies/encored-technologies-case-study/)
+ * [Arm Scales Performance for Chip Design Using Amazon FSx for NetApp ONTAP](https://aws.amazon.com/solutions/case-studies/arm-ltd-case-study/)
+ * [The Institut Pasteur and AWS are analysing the world's DNA, using a public database](https://aws.amazon.com/solutions/case-studies/case-study-institut-pasteur/?nc1=h_ls)
+
+## Other
+ * [Lower Latency and Costs Using AWS Graviton2–Based Instances with Sprinklr](https://aws.amazon.com/solutions/case-studies/sprinklr-case-study/)
+
+# Tools and Agent Skills
+
+[Agent Skills](tools/skills/) are portable instruction packages that AI coding assistants can follow to perform Graviton migrations. They work across 20+ platforms including Claude Code, Kiro, Cursor, Codex, Windsurf, Gemini CLI, and GitHub Copilot.
+
+Available skills:
+ * [Java x86-to-Graviton migration](tools/skills/languages/java-x86-to-graviton/) - dependency audit, native library validation, JVM optimization, ARM64 build validation
+
+See [tools/skills/](tools/skills/) for installation instructions and the full catalogue.
+
+# Additional resources
+
+ * [AWS Graviton](https://aws.amazon.com/ec2/graviton/)
+ * [Neoverse N1 Software Optimization Guide](https://developer.arm.com/documentation/pjdoc466751330-9707/latest)
+ * [Armv8 reference manual](https://documentation-service.arm.com/static/60119835773bb020e3de6fee)
+ * [Package repository search tool](https://pkgs.org/)
+
+**Feedback?** ec2-arm-dev-feedback@amazon.com

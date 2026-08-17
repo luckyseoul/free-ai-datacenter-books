@@ -141,6 +141,45 @@ ACM-gated (no free PDF this pass — use author copies / ACM Open):
 
 Already snapshotted in this repo: llama.cpp, vLLM, Ollama, LocalAI, transformers, OpenHands, firecrawl, crawl4ai, browser-use, markitdown.
 
+## Device documentation (official TRMs / ISA / user guides)
+
+Vendor device manuals are in-scope: RISC-V, AMD/Xilinx Zynq, and high-core-count Arm servers (Grace, GB10 / ASUS GX10, A64FX, Ampere, Graviton).
+
+### Arm enterprise / high core-count
+
+| Device | Cores / notes | Local / official |
+|--------|---------------|------------------|
+| **NVIDIA Grace CPU Superchip** | 72 Neoverse V2 per die, **144** in dual-chip module, NVLink-C2C, LPDDR5X | [Grace Performance Tuning Guide (HTML)](https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html) · [Architecture in depth](https://developer.nvidia.com/blog/nvidia-grace-cpu-superchip-architecture-in-depth/) · [Benchmarking guide](https://github.com/NVIDIA/grace-cpu-benchmarking-guide) [`files/github-docs/NVIDIA-grace-cpu-benchmarking-guide-README.md`](files/github-docs/NVIDIA-grace-cpu-benchmarking-guide-README.md) |
+| **NVIDIA GH200 Grace Hopper** | 72 V2 + Hopper GPU, coherent NVLink-C2C | [GH200 product](https://www.nvidia.com/en-us/data-center/grace-hopper-superchip/) · already have SuperPOD RAs for H100/B200/GB200 |
+| **NVIDIA GB200 / Vera Rubin NVL72** | Grace/Vera + Blackwell/Rubin, 72-GPU NVLink | SuperPOD RA in `files/superpod-ra/` |
+| **NVIDIA GB10 + DGX Spark + ASUS Ascent GX10** | 20-core Arm (10× Cortex-X925 + 10× Cortex-A725) + Blackwell GPU, 128 GB unified, ~1 PFLOP FP4. GX10 is the ASUS DGX Spark OEM. | [`files/device-docs/DGX-Spark-User-Guide.pdf`](files/device-docs/DGX-Spark-User-Guide.pdf) · [`files/device-docs/NVIDIA-DGX-Spark-datasheet.pdf`](files/device-docs/NVIDIA-DGX-Spark-datasheet.pdf) · [`files/device-docs/ASUS-Ascent-GX10-datasheet.pdf`](files/device-docs/ASUS-Ascent-GX10-datasheet.pdf) · [docs.nvidia.com/dgx/dgx-spark](https://docs.nvidia.com/dgx/dgx-spark/) · [Arm GB10 learning path](https://learn.arm.com/learning-paths/laptops-and-desktops/dgx_spark_llamacpp/1_gb10_introduction/) |
+| **Fujitsu A64FX** (Fugaku) | 48+4 Armv8.2 + SVE 512-bit | [`files/device-docs/A64FX-microarchitecture.pdf`](files/device-docs/A64FX-microarchitecture.pdf) · [`files/device-docs/A64FX-HPC-extension.pdf`](files/device-docs/A64FX-HPC-extension.pdf) · [fujitsu/A64FX](https://github.com/fujitsu/A64FX) |
+| **Ampere Altra / AmpereOne** | 80 / 128 / 192+ Neoverse-class | [Ampere altra getting started](https://github.com/AmpereComputing/ampere-altra-getting-started) [`files/github-docs/Ampere-altra-getting-started-README.md`](files/github-docs/Ampere-altra-getting-started-README.md) · [amperecomputing.com](https://amperecomputing.com/) |
+| **AWS Graviton2/3/4** | N1 / V1 / V2-class cloud Arm | [aws/aws-graviton-getting-started](https://github.com/aws/aws-graviton-getting-started) [`files/github-docs/aws-graviton-getting-started-README.md`](files/github-docs/aws-graviton-getting-started-README.md) |
+| **Arm Neoverse V2** (Grace core) | Software Optimization Guide | [ARM 109898 HTML](https://support.arm.com/documentation/109898/0300/) (PDF often account-gated) |
+| **NVIDIA Vera** | Next Grace-class CPU | [Grace CPU Superchip page (Vera section)](https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/) |
+
+Also useful (HTML, not mirrored): [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/), [PTX ISA](https://docs.nvidia.com/cuda/parallel-thread-execution/), [Hopper tuning](https://docs.nvidia.com/cuda/hopper-tuning-guide/), [Blackwell tuning](https://docs.nvidia.com/cuda/blackwell-tuning-guide/).
+
+### RISC-V
+
+| Doc | Local / URL |
+|-----|-------------|
+| RISC-V ISA Manual (unpriv + priv + profiles, release 2026-08-14) | [`files/device-docs/riscv-isa-spec-2026-08-14.pdf`](files/device-docs/riscv-isa-spec-2026-08-14.pdf) · [riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual) · [docs.riscv.org](https://docs.riscv.org/) |
+| SiFive Intelligence Gen 2 family brief (X160/X180/X280 vector/AI) | [`files/device-docs/SiFive-Intelligence-Gen2-Family-Brief.pdf`](files/device-docs/SiFive-Intelligence-Gen2-Family-Brief.pdf) |
+| SiFive X280 in Google TPU datacenter (case study) | [`files/device-docs/SiFive-X280-Datacenter-CaseStudy.pdf`](files/device-docs/SiFive-X280-Datacenter-CaseStudy.pdf) |
+| SiFive manuals index | [sifive.com/documentation](https://www.sifive.com/documentation) |
+| Coral NPU (open RISC-V edge NPU RTL) | already in RE section / [`files/github-docs/coralnpu-README.md`](files/github-docs/coralnpu-README.md) |
+
+### AMD / Xilinx Zynq and Versal
+
+| Doc | Local / URL |
+|-----|-------------|
+| **UG585** Zynq-7000 SoC TRM | [`files/device-docs/ug585-Zynq-7000-TRM.pdf`](files/device-docs/ug585-Zynq-7000-TRM.pdf) — harvested copy is **v1.4 (2012)**; current edition is on the JS-gated [AMD portal UG585](https://docs.amd.com/r/en-US/ug585-zynq-7000-SoC-TRM) |
+| **UG1085** Zynq UltraScale+ TRM (Cortex-A53 + R5) | [AMD portal UG1085](https://docs.amd.com/v/u/en-US/ug1085-zynq-ultrascale-trm) — PDF wall this pass |
+| Versal ACAP / AI Engine TRM | [AM011 / AMD portal](https://docs.amd.com/v/u/en-US/am011-versal-acap-trm) |
+| Adaptive wiki (Zynq software) | [xilinx-wiki Zynq](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842330/Zynq) |
+
 ## Reverse-engineered microarchitecture (CPU / GPU / NPU / TPU)
 
 Unofficial. Encoding tables and latencies can be wrong or generation-specific. NVIDIA SASS, Apple AMX/ANE/AGX, and Qualcomm Hexagon have **no public vendor ISA** for the interesting parts; these are the best public reconstructions.
@@ -229,3 +268,5 @@ Same three as the README — PDFs remain account- or conference-gated this pass:
 Queries covered: GitHub `NVLink`/`NVL72`/`SuperPOD`/`HGX`/`GB200`, `org:opencomputeproject` (OAI, OCDAI, Catalina, DC-SCM, Olympus, Zaius, Rack & Power), code search for OCP Gerbers, Firecrawl PDF/GitHub categories, NVIDIA docs SuperPOD `_downloads/*.pdf`, IEA Energy-and-AI, ASHRAE TC 9.9, OCP contributions DB, 800 VDC, Spectrum-X, UALink (spec still consortium-gated), Google Research Jupiter Evolving storage URL.
 
 **RE follow-up (same day):** GitHub SASS/CuAssembler/maxas/turingas/envytools/applegpu/AMX/ANE/Asahi/open-gpu-doc; arXiv Jia Volta/Turing, Ampere 2208.11174, Hopper 2402.13499 + 2501.12084, Tensor Cores 2206.02874, TPU v1 1704.04760; Agner Fog manuals; Qualcomm Hexagon compiler writeups; Coral NPU RTL.
+
+**Device-docs follow-up:** RISC-V ISA 2026-08-14 release PDF; DGX Spark / GB10 / ASUS GX10; Grace HTML guide; A64FX GitHub manuals; SiFive Intelligence + X280; UG585 v1.4 mirror (UG1085/Versal AMD-portal gated); Ampere/Graviton getting-started repos.
