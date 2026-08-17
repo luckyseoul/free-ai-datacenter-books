@@ -59,6 +59,8 @@
 | ASHRAE TC 9.9 power/storage WPs | `ashrae.org/file library/technical resources/bookstore/…pdf` |
 | Catalina DC-SCM Gerbers | GitHub raw zip from `opencomputeproject/ocp-server-catalina-compute-tray` manufacturing-files path |
 | Barreleye SXM2 riser Gerber CAM | GitHub raw `HW/EE/GBR/Barreleye-G2-SXM2-RISER-EVT-HW-GBR.tgz` (other GBR zips are LFS pointers) |
+| Jia/Luo GPU microarch + Tensor Core + TPU v1 papers | arXiv `/pdf/<id>.pdf` (1804.06826, 1903.07486, 2208.11174, 2402.13499, 2501.12084, 2206.02874, 1704.04760) |
+| Agner Fog CPU manuals | `agner.org/optimize/{instruction_tables,microarchitecture}.pdf` |
 | AICA_E.pdf + other DC manuals | SegaRetro `images/<hash>/…` from known/thumb paths |
 | Saturn ST- set (103 PDFs) | Antime bulk `files/*.pdf` |
 | JVS WIP | Direct `daifukkat.su` PDF |

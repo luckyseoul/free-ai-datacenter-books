@@ -113,6 +113,22 @@ Living software projects are represented by offline README snapshots (not full g
 
 AWS / CISSP shared Drive folders are not mirrored (account-gated). Add local study packs under `files/certs/` if desired.
 
+## Reverse-engineered CPU / GPU / NPU / TPU
+
+Unofficial SASS, Apple AGX/AMX/ANE, and measured x86 µarch. Full table in [`CATALOG.md`](CATALOG.md#reverse-engineered-microarchitecture-cpu--gpu--npu--tpu). Highlights:
+
+| Resource | Local file |
+|----------|------------|
+| Jia et al. Dissecting Volta (SASS RE) | [`files/reverse-eng/dissecting-volta-arxiv-1804.06826.pdf`](files/reverse-eng/dissecting-volta-arxiv-1804.06826.pdf) |
+| Jia et al. Dissecting Turing T4 | [`files/reverse-eng/dissecting-turing-t4-arxiv-1903.07486.pdf`](files/reverse-eng/dissecting-turing-t4-arxiv-1903.07486.pdf) |
+| Abdelkhalik et al. Demystifying Ampere | [`files/reverse-eng/demystifying-ampere-arxiv-2208.11174.pdf`](files/reverse-eng/demystifying-ampere-arxiv-2208.11174.pdf) |
+| Luo et al. Dissecting Hopper (2024 + 2025) | [`files/reverse-eng/dissecting-hopper-arxiv-2402.13499.pdf`](files/reverse-eng/dissecting-hopper-arxiv-2402.13499.pdf) · [`…2501.12084.pdf`](files/reverse-eng/dissecting-hopper-multilevel-arxiv-2501.12084.pdf) |
+| Sun et al. Dissecting Tensor Cores | [`files/reverse-eng/dissecting-tensor-cores-arxiv-2206.02874.pdf`](files/reverse-eng/dissecting-tensor-cores-arxiv-2206.02874.pdf) |
+| Jouppi et al. TPU v1 (canonical architecture paper) | [`files/reverse-eng/tpu-v1-in-datacenter-arxiv-1704.04760.pdf`](files/reverse-eng/tpu-v1-in-datacenter-arxiv-1704.04760.pdf) |
+| Agner Fog instruction tables + microarchitecture | [`files/reverse-eng/agner-fog-instruction-tables.pdf`](files/reverse-eng/agner-fog-instruction-tables.pdf) · [`…microarchitecture.pdf`](files/reverse-eng/agner-fog-microarchitecture.pdf) |
+
+Repos (README snapshots under [`files/github-docs/`](files/github-docs/)): `CuAssembler`, `maxas`, `turingas`, `sass-king`, `blackwell-isa` (SM120), `dougallj/applegpu`, `corsix/amx`, `eiln/ane`, `AsahiLinux`, `NVIDIA/open-gpu-doc`.
+
 ## GitHub catalogs (README snapshots, 2026-08-17)
 
 OCP AI fabrics, NVLink tooling, and awesome-lists live under [`files/github-docs/`](files/github-docs/). Highlights: `OCP-OCDAI-training-fabric`, `OCP-OAI`, Catalina/Olympus/Zaius, `NVIDIA/topograph`, `NVIDIA/Fabric-Manager-Client`, `awesome-gpu-engineering`, `awesome-ai-accelerators`, `awesome-hpc`, SemiAnalysis InferenceX.
@@ -130,7 +146,8 @@ files/
   superpod-ra/    # NVIDIA DGX SuperPOD reference architectures
   papers/         # conference / arXiv PDFs
   cad-gerber/     # OCP Gerbers (DC-SCM, SXM2 riser)
+  reverse-eng/    # SASS / TPU / Agner Fog / microbenchmark papers
   github-docs/    # GitHub README snapshots
 ```
 
-Last updated: 2026-08-17 — SuperPOD RAs, NVLink WPs, IEA/ASHRAE, OCP Gerbers, GitHub catalogs. See [`CATALOG.md`](CATALOG.md).
+Last updated: 2026-08-17 — plus reverse-engineered SASS/Apple/ANE/TPU/CPU µarch docs. See [`CATALOG.md`](CATALOG.md).

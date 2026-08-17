@@ -141,6 +141,70 @@ ACM-gated (no free PDF this pass — use author copies / ACM Open):
 
 Already snapshotted in this repo: llama.cpp, vLLM, Ollama, LocalAI, transformers, OpenHands, firecrawl, crawl4ai, browser-use, markitdown.
 
+## Reverse-engineered microarchitecture (CPU / GPU / NPU / TPU)
+
+Unofficial. Encoding tables and latencies can be wrong or generation-specific. NVIDIA SASS, Apple AMX/ANE/AGX, and Qualcomm Hexagon have **no public vendor ISA** for the interesting parts; these are the best public reconstructions.
+
+### NVIDIA SASS / SM (community)
+
+| Artifact | What it reconstructs | Local / URL |
+|----------|----------------------|-------------|
+| Jia et al. *Dissecting Volta* (arXiv:1804.06826) | Volta SASS encoding, schedulers, L0/L1, Tensor Core | [`files/reverse-eng/dissecting-volta-arxiv-1804.06826.pdf`](files/reverse-eng/dissecting-volta-arxiv-1804.06826.pdf) |
+| Jia et al. *Dissecting Turing T4* (arXiv:1903.07486) | Turing vs prior gens, new ops | [`files/reverse-eng/dissecting-turing-t4-arxiv-1903.07486.pdf`](files/reverse-eng/dissecting-turing-t4-arxiv-1903.07486.pdf) |
+| Abdelkhalik et al. *Demystifying Ampere* (arXiv:2208.11174) | A100 CPI / ISA / Tensor Core | [`files/reverse-eng/demystifying-ampere-arxiv-2208.11174.pdf`](files/reverse-eng/demystifying-ampere-arxiv-2208.11174.pdf) |
+| Luo et al. *Benchmarking Hopper* (arXiv:2402.13499) | Hopper vs Ada vs Ampere + new ISA/APIs | [`files/reverse-eng/dissecting-hopper-arxiv-2402.13499.pdf`](files/reverse-eng/dissecting-hopper-arxiv-2402.13499.pdf) |
+| Luo et al. *Hopper multilevel* (arXiv:2501.12084) | Follow-on multi-level Hopper analysis | [`files/reverse-eng/dissecting-hopper-multilevel-arxiv-2501.12084.pdf`](files/reverse-eng/dissecting-hopper-multilevel-arxiv-2501.12084.pdf) |
+| Sun et al. *Dissecting Tensor Cores* (arXiv:2206.02874) | Turing/Ampere MMA latency/throughput/numerics | [`files/reverse-eng/dissecting-tensor-cores-arxiv-2206.02874.pdf`](files/reverse-eng/dissecting-tensor-cores-arxiv-2206.02874.pdf) |
+| [cloudcores/CuAssembler](https://github.com/cloudcores/CuAssembler) | Unofficial assembler for many SASS gens | [`files/github-docs/CuAssembler-README.md`](files/github-docs/CuAssembler-README.md) |
+| [NervanaSystems/maxas](https://github.com/NervanaSystems/maxas) | Maxwell SASS assembler (Scott Gray; archived) | [`files/github-docs/maxas-README.md`](files/github-docs/maxas-README.md) |
+| [daadaada/turingas](https://github.com/daadaada/turingas) | Volta/Turing assembler | [`files/github-docs/turingas-README.md`](files/github-docs/turingas-README.md) |
+| [florianmattana/sass-king](https://github.com/florianmattana/sass-king) | SM120/Blackwell SASS dictionary + Tensor Core corpus | [`files/github-docs/sass-king-README.md`](files/github-docs/sass-king-README.md) |
+| [kacper-daftcode/blackwell-isa](https://github.com/kacper-daftcode/blackwell-isa) | SM120 machine-readable ISA (`sm120.json`) + [HTML ref](https://kacper-daftcode.github.io/blackwell-isa/SM120_ISA_REFERENCE.html) | [`files/github-docs/blackwell-isa-README.md`](files/github-docs/blackwell-isa-README.md) |
+| [envytools/envytools](https://github.com/envytools/envytools) | Classic Nouveau-era NVIDIA HW RE toolkit (MMIO, falcon, older ISA) | — |
+| [HPMLL/NVIDIA-Hopper-Benchmark](https://github.com/HPMLL/NVIDIA-Hopper-Benchmark) | Code for the Luo Hopper papers | [`files/github-docs/Hopper-Benchmark-README.md`](files/github-docs/Hopper-Benchmark-README.md) |
+
+Vendor-released (not RE, but the only official chip-interface docs):
+
+- [NVIDIA/open-gpu-doc](https://github.com/NVIDIA/open-gpu-doc) — class methods, BIOS tables, display/devinit ([github pages](https://nvidia.github.io/open-gpu-doc/)) — [`files/github-docs/NVIDIA-open-gpu-doc-README.md`](files/github-docs/NVIDIA-open-gpu-doc-README.md)
+- [NVIDIA/open-gpu-kernel-modules](https://github.com/NVIDIA/open-gpu-kernel-modules) — open kernel modules (userspace blob remains closed) — snapshot [`files/github-docs/NVIDIA-open-gpu-kernel-modules-README.md`](files/github-docs/NVIDIA-open-gpu-kernel-modules-README.md)
+- Official PTX (not SASS): [docs.nvidia.com PTX ISA](https://docs.nvidia.com/cuda/parallel-thread-execution/)
+
+### Apple Silicon (GPU / AMX / ANE)
+
+| Artifact | What | Local / URL |
+|----------|------|-------------|
+| [dougallj/applegpu](https://github.com/dougallj/applegpu) | M1 G13 GPU ISA: docs, disassembler, emulator, assembler. Docs: [dougallj.github.io/applegpu](https://dougallj.github.io/applegpu/docs.html) | [`files/github-docs/applegpu-README.md`](files/github-docs/applegpu-README.md) |
+| [AsahiLinux/gpu](https://github.com/AsahiLinux/gpu) + [docs](https://github.com/AsahiLinux/docs) + [m1n1](https://github.com/AsahiLinux/m1n1) | AGX driver RE playground | [`files/github-docs/AsahiLinux-docs-README.md`](files/github-docs/AsahiLinux-docs-README.md) |
+| Alyssa Rosenzweig series | [Dissecting the M1 GPU, part I](https://alyssarosenzweig.ca/blog/asahi-gpu-part-1.html) | — |
+| [corsix/amx](https://github.com/corsix/amx) | **Apple AMX** (undocumented matrix coprocessor) instruction set | [`files/github-docs/corsix-amx-README.md`](files/github-docs/corsix-amx-README.md) |
+| [eiln/ane](https://github.com/eiln/ane) | Reverse-engineered **Linux ANE driver** (Asahi) | [`files/github-docs/eiln-ane-README.md`](files/github-docs/eiln-ane-README.md) |
+| [hollance/neural-engine](https://github.com/hollance/neural-engine) | ANE notes / undocumented Core ML paths | [`files/github-docs/hollance-neural-engine-README.md`](files/github-docs/hollance-neural-engine-README.md) |
+| [hack-different/apple-knowledge](https://github.com/hack-different/apple-knowledge) | Machine-readable Apple hardware + RE notes | [`files/github-docs/apple-knowledge-README.md`](files/github-docs/apple-knowledge-README.md) |
+| M4 ANE writeup | [Inside the M4 Apple Neural Engine](https://maderix.substack.com/p/inside-the-m4-apple-neural-engine) | — |
+
+### CPU microarchitecture (measured / reconstructed)
+
+| Artifact | What | Local / URL |
+|----------|------|-------------|
+| Agner Fog *Instruction tables* | x86/x64 latency/throughput/µops, many µarchs | [`files/reverse-eng/agner-fog-instruction-tables.pdf`](files/reverse-eng/agner-fog-instruction-tables.pdf) |
+| Agner Fog *Microarchitecture* | Intel/AMD pipeline RE notes (278 pp) | [`files/reverse-eng/agner-fog-microarchitecture.pdf`](files/reverse-eng/agner-fog-microarchitecture.pdf) |
+| [uops.info](https://uops.info/) | Automated x86 port/latency measurements | — |
+| [InstLatx64](https://github.com/InstLatx64/InstLatx64) | CPUID / instlat dumps | — |
+| [chipsandcheese.com](https://chipsandcheese.com/) | Modern Zen / Apple / GPU floorplan + perf writeups | — |
+| [WikiChip](https://en.wikichip.org/) | Process / µarch encyclopedia | — |
+
+### TPU / NPU
+
+| Artifact | What | Local / URL |
+|----------|------|-------------|
+| Jouppi et al. *In-Datacenter Performance Analysis of a TPU* (arXiv:1704.04760) | **TPU v1** architecture (systolic array) — vendor paper, not RE, but the canonical TPU-v1 doc | [`files/reverse-eng/tpu-v1-in-datacenter-arxiv-1704.04760.pdf`](files/reverse-eng/tpu-v1-in-datacenter-arxiv-1704.04760.pdf) |
+| TPU v4 (already in papers/) | [`files/papers/tpu-v4-isca23.pdf`](files/papers/tpu-v4-isca23.pdf) | — |
+| [google-coral/coralnpu](https://github.com/google-coral/coralnpu) | **Open** RISC-V edge NPU (not RE; Google published the RTL) | [`files/github-docs/coralnpu-README.md`](files/github-docs/coralnpu-README.md) |
+| Qualcomm Hexagon / HTP compiler RE | [datavorous writeup](https://datavorous.github.io/writing/qairt/) — VTCM, silent precision rewrites. No public Hexagon NPU ISA. | — |
+| Qualcomm NPU kernel (security) | [GitHub Security Lab: Fall of the machines](https://github.blog/security/vulnerability-research/fall-of-the-machines-exploiting-the-qualcomm-npu-neural-processing-unit-kernel-driver/) | — |
+
+AMD RDNA/CDNA and Intel Xe have **vendor ISA PDFs** (GPUOpen / Intel) — not listed here because they are official. Datacenter Gaudi / Trainium / Inferentia / Groq / Cerebras / MTIA / Maia ISAs remain unpublished; no high-quality public RE dumps found this pass.
+
 ## Chinese resources (still not mirrored)
 
 Same three as the README — PDFs remain account- or conference-gated this pass:
@@ -163,3 +227,5 @@ Same three as the README — PDFs remain account- or conference-gated this pass:
 ## Search log (this pass)
 
 Queries covered: GitHub `NVLink`/`NVL72`/`SuperPOD`/`HGX`/`GB200`, `org:opencomputeproject` (OAI, OCDAI, Catalina, DC-SCM, Olympus, Zaius, Rack & Power), code search for OCP Gerbers, Firecrawl PDF/GitHub categories, NVIDIA docs SuperPOD `_downloads/*.pdf`, IEA Energy-and-AI, ASHRAE TC 9.9, OCP contributions DB, 800 VDC, Spectrum-X, UALink (spec still consortium-gated), Google Research Jupiter Evolving storage URL.
+
+**RE follow-up (same day):** GitHub SASS/CuAssembler/maxas/turingas/envytools/applegpu/AMX/ANE/Asahi/open-gpu-doc; arXiv Jia Volta/Turing, Ampere 2208.11174, Hopper 2402.13499 + 2501.12084, Tensor Cores 2206.02874, TPU v1 1704.04760; Agner Fog manuals; Qualcomm Hexagon compiler writeups; Coral NPU RTL.
