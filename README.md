@@ -17,16 +17,53 @@ Curated **offline** collection. Document binaries and README snapshots live unde
 
 > **Note:** Full 4th ed PDF obtained via Springer OA content path (datacenter-book.org API is bot-gated). Workarounds catalog: [`files/core/SOURCES.md`](files/core/SOURCES.md).
 
+Full 2026-08-17 harvest (NVLink gens 1–6, SuperPOD RAs, OCP Gerbers, GitHub, IEA/ASHRAE): **[`CATALOG.md`](CATALOG.md)**.
+
 ## Energy / Layout / Rack / Interconnect
 
 | Resource | Local file |
 |----------|------------|
 | FEMP Best Practices Guide for Energy-Efficient Data Center Design (2024) | [`files/energy-cooling/FEMP-Best-Practices-Data-Center-Design-2024.pdf`](files/energy-cooling/FEMP-Best-Practices-Data-Center-Design-2024.pdf) |
 | LBNL/FEMP Best Practices (historical Wayback copy) | [`files/energy-cooling/LBNL-FEMP-Best-Practices.pdf`](files/energy-cooling/LBNL-FEMP-Best-Practices.pdf) |
+| IEA *Energy and AI* (2025) | [`files/energy-cooling/IEA-Energy-and-AI-2025.pdf`](files/energy-cooling/IEA-Energy-and-AI-2025.pdf) |
+| IEA *Key Questions on Energy and AI* (2026) | [`files/energy-cooling/IEA-Key-Questions-on-Energy-and-AI-2026.pdf`](files/energy-cooling/IEA-Key-Questions-on-Energy-and-AI-2026.pdf) |
+| ASHRAE TC 9.9 power-equipment thermal guidelines | [`files/energy-cooling/ASHRAE-TC99-Power-Equipment-Thermal-Guidelines.pdf`](files/energy-cooling/ASHRAE-TC99-Power-Equipment-Thermal-Guidelines.pdf) |
+| ASHRAE TC 9.9 storage thermal guidelines | [`files/energy-cooling/ASHRAE-TC99-Storage-Thermal-Guidelines.pdf`](files/energy-cooling/ASHRAE-TC99-Storage-Thermal-Guidelines.pdf) |
+| EPC 800 VDC → 12.5 V (NVIDIA 800 VDC ecosystem) | [`files/energy-cooling/EPC-800VDC-to-12.5V.pdf`](files/energy-cooling/EPC-800VDC-to-12.5V.pdf) |
 | Google Aquila (NSDI’22, Gibson et al.) | [`files/papers/aquila-nsdi22.pdf`](files/papers/aquila-nsdi22.pdf) |
 | Google Jupiter Rising | [`files/papers/google-jupiter-rising.pdf`](files/papers/google-jupiter-rising.pdf) |
+| Google Jupiter Evolving (SIGCOMM’22, OCS) | [`files/papers/jupiter-evolving-sigcomm22.pdf`](files/papers/jupiter-evolving-sigcomm22.pdf) |
+| ByteDance MegaScale (NSDI’24) | [`files/papers/megascale-nsdi24.pdf`](files/papers/megascale-nsdi24.pdf) |
+| Rail-only (arXiv:2307.12169) | [`files/papers/rail-only-arxiv-2307.12169.pdf`](files/papers/rail-only-arxiv-2307.12169.pdf) |
+| TPU v4 (ISCA’23) | [`files/papers/tpu-v4-isca23.pdf`](files/papers/tpu-v4-isca23.pdf) |
 
 Harvest methods for blocked hosts: see [`files/core/SOURCES.md`](files/core/SOURCES.md).
+
+## NVLink / NVSwitch / SuperPOD (architecture)
+
+| Resource | Local file |
+|----------|------------|
+| Pascal (NVLink 1) architecture WP | [`files/nvlink/pascal-architecture-whitepaper.pdf`](files/nvlink/pascal-architecture-whitepaper.pdf) |
+| Volta (NVLink 2 + first NVSwitch) architecture WP | [`files/nvlink/volta-architecture-whitepaper.pdf`](files/nvlink/volta-architecture-whitepaper.pdf) |
+| Ampere A100 (NVLink 3) architecture WP | [`files/nvlink/ampere-architecture-whitepaper.pdf`](files/nvlink/ampere-architecture-whitepaper.pdf) |
+| Turing architecture WP | [`files/nvlink/turing-architecture-whitepaper.pdf`](files/nvlink/turing-architecture-whitepaper.pdf) |
+| Li et al. GPU interconnect eval (NVLink 1/2 vs PCIe) | [`files/papers/gpu-interconnect-eval-arxiv-1903.04611.pdf`](files/papers/gpu-interconnect-eval-arxiv-1903.04611.pdf) |
+| DGX SuperPOD RA — H100 | [`files/superpod-ra/RA-DGX-H100-SuperPOD.pdf`](files/superpod-ra/RA-DGX-H100-SuperPOD.pdf) |
+| DGX SuperPOD RA — B200 | [`files/superpod-ra/RA-DGX-B200-SuperPOD.pdf`](files/superpod-ra/RA-DGX-B200-SuperPOD.pdf) |
+| DGX SuperPOD RA — GB200 NVL72 | [`files/superpod-ra/RA-DGX-GB200-SuperPOD.pdf`](files/superpod-ra/RA-DGX-GB200-SuperPOD.pdf) |
+
+Generation table (NVLink 1 → 6 / NVL72 / NVLink-C2C) is in [`CATALOG.md`](CATALOG.md). Hopper/Blackwell/Rubin WPs remain on `resources.nvidia.com` (gated).
+
+## Gerbers / OCP board files
+
+NVIDIA does not publish NVLink switch or GPU Gerbers. Closest open packs:
+
+| Pack | Local file |
+|------|------------|
+| Meta Catalina **DC-SCM** PCB artwork (`.art` / `.drl` Gerbers) | [`files/cad-gerber/Catalina-DC-SCM-artwork-OCP.zip`](files/cad-gerber/Catalina-DC-SCM-artwork-OCP.zip) |
+| OpenPOWER Barreleye G2 **SXM2 riser** CAM/Gerber job | [`files/cad-gerber/Barreleye-G2-SXM2-RISER-EVT-HW-GBR.tgz`](files/cad-gerber/Barreleye-G2-SXM2-RISER-EVT-HW-GBR.tgz) |
+
+More OCP CAD (Catalina tray, Olympus 7z, Zaius LFS Gerbers): [`files/cad-gerber/README.md`](files/cad-gerber/README.md) and [`CATALOG.md`](CATALOG.md).
 
 ## Chinese Free Resources
 
@@ -76,6 +113,10 @@ Living software projects are represented by offline README snapshots (not full g
 
 AWS / CISSP shared Drive folders are not mirrored (account-gated). Add local study packs under `files/certs/` if desired.
 
+## GitHub catalogs (README snapshots, 2026-08-17)
+
+OCP AI fabrics, NVLink tooling, and awesome-lists live under [`files/github-docs/`](files/github-docs/). Highlights: `OCP-OCDAI-training-fabric`, `OCP-OAI`, Catalina/Olympus/Zaius, `NVIDIA/topograph`, `NVIDIA/Fabric-Manager-Client`, `awesome-gpu-engineering`, `awesome-ai-accelerators`, `awesome-hpc`, SemiAnalysis InferenceX.
+
 ## Layout
 
 ```
@@ -84,7 +125,12 @@ files/
   ml-textbooks/   # foundational textbooks
   courses/        # course page HTML snapshots
   software-docs/  # project README snapshots
-  energy-cooling/ # (optional) FEMP / OCP / interconnect PDFs
+  energy-cooling/ # FEMP / IEA / ASHRAE / 800 VDC
+  nvlink/         # NVLink-era GPU architecture whitepapers
+  superpod-ra/    # NVIDIA DGX SuperPOD reference architectures
+  papers/         # conference / arXiv PDFs
+  cad-gerber/     # OCP Gerbers (DC-SCM, SXM2 riser)
+  github-docs/    # GitHub README snapshots
 ```
 
-Last updated: 2026-07-24 — offline document harvest; URLs replaced with local `files/` paths.
+Last updated: 2026-08-17 — SuperPOD RAs, NVLink WPs, IEA/ASHRAE, OCP Gerbers, GitHub catalogs. See [`CATALOG.md`](CATALOG.md).
