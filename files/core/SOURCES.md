@@ -50,6 +50,15 @@
 | Energy Efficient Servers | Springer OA direct PDF |
 | Aquila NSDI’22 | USENIX `nsdi22-paper-gibson.pdf` |
 | Jupiter Rising | Google research static pub PDF |
+| Jupiter Evolving (SIGCOMM’22) | Google Research `storage.googleapis.com/gweb-research2023-media/pubtools/6752.pdf` (ACM PDF 403) |
+| MegaScale NSDI’24 | USENIX `nsdi24-jiang-ziheng.pdf` |
+| Rail-only / RailX / MixNet / TPU v4 / GPU interconnect eval | arXiv `/pdf/<id>.pdf` |
+| Ampere / Volta / Pascal / Turing WPs | `images.nvidia.com` direct (Hopper/Blackwell/Rubin WPs gated on `resources.nvidia.com`) |
+| DGX SuperPOD RAs (H100/B200/GB200) | `docs.nvidia.com/dgx-superpod/…/_downloads/<hash>/<name>.pdf` from each RA index “also available as a PDF” tip |
+| IEA Energy and AI + Key Questions 2026 | `iea.blob.core.windows.net/assets/<id>/…pdf` from iea.org report pages |
+| ASHRAE TC 9.9 power/storage WPs | `ashrae.org/file library/technical resources/bookstore/…pdf` |
+| Catalina DC-SCM Gerbers | GitHub raw zip from `opencomputeproject/ocp-server-catalina-compute-tray` manufacturing-files path |
+| Barreleye SXM2 riser Gerber CAM | GitHub raw `HW/EE/GBR/Barreleye-G2-SXM2-RISER-EVT-HW-GBR.tgz` (other GBR zips are LFS pointers) |
 | AICA_E.pdf + other DC manuals | SegaRetro `images/<hash>/…` from known/thumb paths |
 | Saturn ST- set (103 PDFs) | Antime bulk `files/*.pdf` |
 | JVS WIP | Direct `daifukkat.su` PDF |
